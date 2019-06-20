@@ -8,9 +8,14 @@ Vue.use(Router)
 
 const passwd = r => require.ensure([], () => r(require('../pages/access/reset/passwd')), 'passwd')
 const mainpage = r => require.ensure([], () => r(require('../pages/mainpage/mainpage')), 'mainpage')
-//const taskDetail = r => require.ensure([], () => r(require('../pages/mainpage/taskDetail')), 'taskDetail')
-
-
+const taskDetail = r => require.ensure([], () => r(require('../pages/mainpage/taskDetail')), 'taskDetail')
+const person = r => require.ensure([], () => r(require('../pages/personal/Info/person')), 'person')
+const modifyInfo = r => require.ensure([], () => r(require('../pages/personal/Info/modifyInfo')), 'modifyInfo')
+const account = r => require.ensure([], () => r(require('../pages/personal/Info/account')), 'account')
+const alipay = r => require.ensure([], () => r(require('../pages/personal/wallet/alipay')), 'alipay')
+const withdrawProcess = r => require.ensure([], () => r(require('../pages/personal/wallet/withdrawProcess')), 'withdrawProcess')
+const wallet = r => require.ensure([], () => r(require('../pages/personal/wallet/wallet')), 'wallet')
+const withdraw = r => require.ensure([], () => r(require('../pages/personal/wallet/withdraw')), 'withdraw')
 
 export default new Router({
   routes: [
@@ -20,15 +25,48 @@ export default new Router({
       children: [
         {
           path: '',
-          redirect: '/home'
+          redirect: '/mainpage'
         },
         {
-          path: '/home',
+          path: '/mainpage',
           component: mainpage
         },
         {
-          path: 'passwd',
+          path: '/mainpage/:task',
+          component: taskDetail,
+        },
+        {
+          path: '/passwd',
           component: passwd
+        },
+        {
+          path: '/:person',
+          component: person
+        },
+        {
+          path: '/:person/info',
+          component: account
+        },
+        {
+          path: '/:person/info/modifyInfo',
+          component: modifyInfo
+        },
+        {
+          path: '/:person/wallet',
+          component: wallet
+        },
+        {
+          path: '/:person/wallet/alipay',
+          component: alipay
+        },
+        {
+          path: '/:person/wallet/withdrawProcess',
+          component: withdrawProcess,
+
+        },
+        {
+          path: '/:person/wallet/withdraw',
+          component: withdraw
         }
       ]
     }

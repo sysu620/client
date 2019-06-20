@@ -125,8 +125,7 @@
                             <div class="ui container">
                                 <h3>填写问卷任务</h3>
                                 <div class="ui grid ">
-
-
+                                    
                                     <div class = "one wide column"></div>
                                     <div class = "four wide column">
                                             <div class="ui center aligned container">
@@ -147,6 +146,7 @@
 
                                             </div>
                                     </div>
+                                    
                                     <div class = "one  wide column"></div>
                                     <div class = "four wide column">
                                             <div class="ui center aligned container">
@@ -300,6 +300,7 @@
 
                                             </div>
                                     </div>
+                                    
                                     <div class = "one  wide column"></div>
                                     <div class = "four wide column">
                                             <div class="ui center aligned container">
@@ -320,6 +321,7 @@
 
                                             </div>
                                     </div>
+                                    
                                     <div class = "one wide column"></div>
                                     <div class = "four wide column">
                                             <div class="ui center aligned container">
@@ -429,7 +431,6 @@
             <div class = "row"></div>
             <div class = "row"></div>
         </div>
-        
     </div>
 </template>
 
@@ -472,5 +473,4 @@ export default {
     .top_0 {
         margin-top: 0;
     }
-
 </style>
