@@ -16,6 +16,15 @@ const alipay = r => require.ensure([], () => r(require('../pages/personal/wallet
 const withdrawProcess = r => require.ensure([], () => r(require('../pages/personal/wallet/withdrawProcess')), 'withdrawProcess')
 const wallet = r => require.ensure([], () => r(require('../pages/personal/wallet/wallet')), 'wallet')
 const withdraw = r => require.ensure([], () => r(require('../pages/personal/wallet/withdraw')), 'withdraw')
+const help = r => require.ensure([], () => r(require('../pages/help/help')), 'withdraw')
+const problem = r => require.ensure([], () => r(require('../pages/help/problem')), 'withdraw')
+const advice = r => require.ensure([], () => r(require('../pages/help/advice')), 'advice')
+const about = r => require.ensure([], () => r(require('../pages/help/about')), 'about')
+
+
+
+
+
 
 export default new Router({
   routes: [
