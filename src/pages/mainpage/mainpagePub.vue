@@ -55,8 +55,8 @@
                         <div class="ui grid"> 
                             <div class = "fifteen wide column ton black_border">
                                 <div class="ui buttons">
-                                <router-link class="ui button" to="/mainpageTask">我的任务</router-link>
-                                <router-link class="ui button positive" to="/mainpagePub">我的发布</router-link>
+                                <router-link class="ui button" to="/mainpage/mainpageTask">我的任务</router-link>
+                                <router-link class="ui button positive" to="/mainpage/mainpagePub">我的发布</router-link>
                                 </div>
                                 <div class="ui center aligned container">
                                     <div class="ui grid mline"> 
@@ -83,7 +83,7 @@
 
                                         <div class="twelve wide column"></div>
                                         <div class="three wide column left aligned">
-                                            <button class="ui small blue button" style="width:120px;">查看全部</button>
+                                            <router-link :to="{name: 'pspubQ', params: {person: me}}" class="ui small blue button" style="width:120px;">查看全部</router-link>
                                         </div>
                                         <div class="one wide column"></div>
                                     </div>
@@ -439,6 +439,7 @@
 export default {
     data(){
         return {
+            me: 'hbx'
 
         }
     },

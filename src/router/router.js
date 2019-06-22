@@ -130,11 +130,13 @@ export default new Router({
         },
         {
           path: '/personal/:person/pub/psPubQ',
-          component: psPubQ
+          component: psPubQ,
+          name: 'pspubQ'
         },
         {
           path: '/personal/:person/pub/psPubT',
-          component: psPubT
+          component: psPubT,
+          name: 'pspubT'
         },
         {
           path: '/personal/:person/task/psPub',
