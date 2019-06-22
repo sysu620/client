@@ -21,7 +21,7 @@
                                 <div class="eight wide column"></div>
                                 <div class="three wide column"></div>
                                 <div class="four wide column">
-                                    <img class = "ui centered small circular image" src="../../../assets/nan.jpg">
+                                    <img class = "ui centered small circular image" src="../../assets/nan.jpg">
                                     <br/>
                                     <div class = "ui center aligned container">
                                         <a class="ui item">

@@ -6,24 +6,56 @@ import test from '@/components/test'
 import App from '../App'
 Vue.use(Router)
 
-const passwd = r => require.ensure([], () => r(require('../pages/access/reset/passwd')), 'passwd')
-const mainpage = r => require.ensure([], () => r(require('../pages/mainpage/mainpage')), 'mainpage')
-const taskDetail = r => require.ensure([], () => r(require('../pages/task/taskDetail')), 'taskDetail')
-const person = r => require.ensure([], () => r(require('../pages/personal/Info/person')), 'person')
-const modifyInfo = r => require.ensure([], () => r(require('../pages/personal/Info/modifyInfo')), 'modifyInfo')
-const account = r => require.ensure([], () => r(require('../pages/personal/Info/account')), 'account')
-const alipay = r => require.ensure([], () => r(require('../pages/personal/wallet/alipay')), 'alipay')
-const withdrawProcess = r => require.ensure([], () => r(require('../pages/personal/wallet/withdrawProcess')), 'withdrawProcess')
-const wallet = r => require.ensure([], () => r(require('../pages/personal/wallet/wallet')), 'wallet')
-const withdraw = r => require.ensure([], () => r(require('../pages/personal/wallet/withdraw')), 'withdraw')
+//login
+const login = HelloWorld;
+
+
+//activity
+const pubQ = r => require.ensure([], () => r(require('../pages/activity/pubQuestion')), 'pubQ')
+const pubT = r => require.ensure([], () => r(require('../pages/activity/pubTask')), 'pubT')
+
+//help
 const help = r => require.ensure([], () => r(require('../pages/help/help')), 'help')
 const problem = r => require.ensure([], () => r(require('../pages/help/problem')), 'problem')
 const advice = r => require.ensure([], () => r(require('../pages/help/advice')), 'advice')
 const about = r => require.ensure([], () => r(require('../pages/help/about')), 'about')
 
 
+//mainpage
+const mainpagePub = r => require.ensure([], () => r(require('../pages/mainpage/mainpagePub')), 'mainpagePub')
+const mainpageTask = r => require.ensure([], () => r(require('../pages/mainpage/mainpageTask')), 'mainpageTask')
 
+//personal
+const person = r => require.ensure([], () => r(require('../pages/personal/person')), 'person')
 
+//personal/comment
+const comment = r => require.ensure([], () => r(require('../pages/personal/comment/comment')), 'comment')
+
+//personal/info
+const changePW = r => require.ensure([], () => r(require('../pages/personal/info/changePW')), 'changePW')
+const manageAccount = r => require.ensure([], () => r(require('../pages/personal/info/manageAccount')), 'manageAccount')
+const modifyInfo = r => require.ensure([], () => r(require('../pages/personal/Info/modifyInfo')), 'modifyInfo')
+
+//personal/message
+const message = r => require.ensure([], () => r(require('../pages/personal/message/message')), 'message')
+
+//personal/pub
+const psPubQ = HelloWorld;
+const psPubT = HelloWorld;
+
+//personal/task
+const psPub = HelloWorld;
+const psTask = r => require.ensure([], () => r(require('../pages/personal/task/mytask')), 'psTask')
+
+//personal/wallet
+const alipay = r => require.ensure([], () => r(require('../pages/personal/wallet/alipay')), 'alipay')
+const withdrawProcess = r => require.ensure([], () => r(require('../pages/personal/wallet/withdrawProcess')), 'withdrawProcess')
+const wallet = r => require.ensure([], () => r(require('../pages/personal/wallet/wallet')), 'wallet')
+const withdraw = r => require.ensure([], () => r(require('../pages/personal/wallet/withdraw')), 'withdraw')
+
+//task
+const allTask = HelloWorld;
+const taskDetail = r => require.ensure([], () => r(require('../pages/task/taskDetail')), 'taskDetail')
 
 
 export default new Router({
@@ -34,35 +66,83 @@ export default new Router({
       children: [
         {
           path: '',
-          redirect: '/mainpage'
+          redirect: '/login'
         },
         {
-          path: '/mainpage',
-          component: mainpage
+          path: '/login',
+          component: login
         },
         {
-          path: '/task/:task',
-          component: taskDetail,
+          path: '/activity/pubQ',
+          component: pubQ
         },
         {
-          path: '/passwd',
-          component: passwd
+          path: '/activity/pubT',
+          component: pubT
+        },
+        {
+          path: '/help/help',
+          component: help
+        },
+        {
+          path: '/help/problem',
+          component: problem
+        },
+        {
+          path: '/help/advice',
+          component: advice
+        },
+        {
+          path: '/help/about',
+          component: about
+        },
+        {
+          path: '/mainpage/mainpagePub',
+          component: mainpagePub
+        },
+        {
+          path: '/mainpage/mainpageTask',
+          component: mainpageTask
         },
         {
           path: '/personal/:person',
           component: person
         },
         {
-          path: '/personal/:person/info',
-          component: account
+          path: '/personal/:person/comment',
+          component: comment
+        },
+        {
+          path: '/personal/:person/info/changePW',
+          component: changePW
+        },
+        {
+          path: '/personal/:person/info/manageAccount',
+          component: manageAccount
         },
         {
           path: '/personal/:person/info/modifyInfo',
           component: modifyInfo
         },
         {
-          path: '/personal/:person/wallet',
-          component: wallet
+          path: '/personal/:person/message/',
+          component: message
+        },
+        {
+          path: '/personal/:person/pub/psPubQ',
+          component: psPubQ
+        },
+        {
+          path: '/personal/:person/pub/psPubT',
+          component: psPubT
+        },
+        {
+          path: '/personal/:person/task/psPub',
+          component: psPub
+        },
+        {
+          path: '/personal/:person/task/psTask',
+          component: psTask
         },
         {
           path: '/personal/:person/wallet/alipay',
@@ -70,45 +150,25 @@ export default new Router({
         },
         {
           path: '/personal/:person/wallet/withdrawProcess',
-          component: withdrawProcess,
-
+          component: withdrawProcess
+        },
+        {
+          path: '/personal/:person/wallet/wallet',
+          component: wallet
         },
         {
           path: '/personal/:person/wallet/withdraw',
           component: withdraw
         },
         {
-          path: '/help',
-          component: help
+          path: '/task/allTask',
+          component: allTask
         },
         {
-          path: '/help/about',
-          component: about
+          path: '/task/taskDetail',
+          component: taskDetail
         },
-        {
-          path: '/help/advice',
-          component: advice
-        },
-        {
-          path: '/help/problem',
-          component:problem
-        }
       ]
-    }
+    },
   ]
 })
-
-// export default [{
-//   path: '/',
-//   component: App,
-//   children: [
-//     {
-//       path: '',
-//       redirect: '/home'
-//     },
-//     {
-//       path: '/home',
-//       component: HelloWorld
-//     }
-//   ]
-// }]

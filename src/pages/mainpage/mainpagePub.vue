@@ -55,8 +55,8 @@
                         <div class="ui grid"> 
                             <div class = "fifteen wide column ton black_border">
                                 <div class="ui buttons">
-                                <button class="ui positive button">我的任务</button>
-                                <button class="ui  button">我的发布</button>
+                                <router-link class="ui button" to="/mainpageTask">我的任务</router-link>
+                                <router-link class="ui button positive" to="/mainpagePub">我的发布</router-link>
                                 </div>
                                 <div class="ui center aligned container">
                                     <div class="ui grid mline"> 
@@ -437,6 +437,13 @@
 
 <script>
 export default {
+    data(){
+        return {
+
+        }
+    },
+    methods: {
+    }
     
 }
 </script>
