@@ -8,6 +8,8 @@ Vue.use(Router)
 
 //login
 const login = HelloWorld;
+const register = HelloWorld;
+const protocol = HelloWorld;
 
 
 //activity
@@ -71,6 +73,14 @@ export default new Router({
         {
           path: '/login',
           component: login
+        },
+        {
+          path: '/register',
+          component: reqister
+        },
+        {
+          path: '/protocol',
+          component: protocol
         },
         {
           path: '/activity/pubQ',
