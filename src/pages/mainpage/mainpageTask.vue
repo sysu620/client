@@ -103,7 +103,7 @@
                 <div class="ui category search ">
                 <div class="ui icon input ">
                     <input class="prompt " type="text" placeholder="输入你想查找的任务">
-                    <i class="search icon"></i>
+                    <i class="search link icon"></i>
                 </div>
                 <div class="results"></div>
                 </div>
@@ -445,7 +445,11 @@ export default {
     },
     methods: {
 
-    }
+    },
+    beforeRouteLeave (to, from, next) {
+        //search
+        window.confirm('you enter: ' + this.searchText + " do you want to leave?")
+    },
     
 }
 </script>

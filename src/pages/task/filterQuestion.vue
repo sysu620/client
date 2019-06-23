@@ -17,10 +17,10 @@
           <div class="ui red padded grid">
             <div class="one wide column"></div>
             <div class="two wide column left aligned">
-              <button class="ui mini  blue button">查看全部</button>
+              <button class="ui mini  button">查看全部</button>
             </div>
             <div class="two wide column left aligned  ">
-              <button class="ui mini  button">问卷任务</button>
+              <button class="ui mini blue  button">问卷任务</button>
             </div>
             <div class="two wide column left aligned  ">
               <button class="ui mini  button">快递任务</button>
@@ -77,16 +77,12 @@
                   <div class="sixteen wide column">
                     <div class="ui grid">
                       <div class="eight wide column left aligned">
-                        这是别人的快递1
                       </div>
                       <div class="two wide column left aligned">
-                        快递
                       </div>
                       <div class="two wide column left aligned">
-                        0/1
                       </div>
                       <div class="four wide column left aligned">
-                        2019年5月26日
                       </div>
                     </div>
                   </div>
@@ -245,6 +241,9 @@
         </div>
 
       </div>
+    </div>
+  </div>
+
 </template>
 
 

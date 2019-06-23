@@ -58,130 +58,128 @@ const withdraw = r => require.ensure([], () => r(require('../pages/personal/wall
 //task
 const allTask = HelloWorld;
 const taskDetail = r => require.ensure([], () => r(require('../pages/task/taskDetail')), 'taskDetail')
-
+const filterDelivery = r => require.ensure([], () => r(require('../pages/task/filterDelivery')), 'filterDelivery')
+const filterQuestion = r => require.ensure([], () => r(require('../pages/task/filterQuestion')), 'filterQuestion')
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      component: App,
-      children: [
-        {
-          path: '',
-          redirect: '/login'
-        },
-        {
-          path: '/login',
-          component: login
-        },
-        {
-          path: '/register',
-          component: register
-        },
-        {
-          path: '/protocol',
-          component: protocol
-        },
-        {
-          path: '/activity/pubQ',
-          component: pubQ
-        },
-        {
-          path: '/activity/pubT',
-          component: pubT
-        },
-        {
-          path: '/help/help',
-          component: help
-        },
-        {
-          path: '/help/problem',
-          component: problem
-        },
-        {
-          path: '/help/advice',
-          component: advice
-        },
-        {
-          path: '/help/about',
-          component: about
-        },
-        {
-          path: '/mainpage/mainpagePub',
-          component: mainpagePub
-        },
-        {
-          path: '/mainpage/mainpageTask',
-          component: mainpageTask
-        },
-        {
-          path: '/personal/:person',
-          component: person
-        },
-        {
-          path: '/personal/:person/comment',
-          component: comment
-        },
-        {
-          path: '/personal/:person/info/changePW',
-          component: changePW
-        },
-        {
-          path: '/personal/:person/info/manageAccount',
-          component: manageAccount
-        },
-        {
-          path: '/personal/:person/info/modifyInfo',
-          component: modifyInfo
-        },
-        {
-          path: '/personal/:person/message/',
-          component: message
-        },
-        {
-          path: '/personal/:person/pub/psPubQ',
-          component: psPubQ,
-          name: 'pspubQ'
-        },
-        {
-          path: '/personal/:person/pub/psPubT',
-          component: psPubT,
-          name: 'pspubT'
-        },
-        {
-          path: '/personal/:person/task/psPub',
-          component: psPub
-        },
-        {
-          path: '/personal/:person/task/psTask',
-          component: psTask
-        },
-        {
-          path: '/personal/:person/wallet/alipay',
-          component: alipay
-        },
-        {
-          path: '/personal/:person/wallet/withdrawProcess',
-          component: withdrawProcess
-        },
-        {
-          path: '/personal/:person/wallet/wallet',
-          component: wallet
-        },
-        {
-          path: '/personal/:person/wallet/withdraw',
-          component: withdraw
-        },
-        {
-          path: '/task/allTask',
-          component: allTask,
-          name: 'alltask'
-        },
-        {
-          path: '/task/taskDetail',
-          component: taskDetail
-        },
-      ]
-    },
-  ]
+  routes: [{
+    path: '/',
+    component: App,
+    children: [{
+        path: '',
+        redirect: '/login'
+      },
+      {
+        path: '/login',
+        component: login
+      },
+      {
+        path: '/register',
+        component: register
+      },
+      {
+        path: '/protocol',
+        component: protocol
+      },
+      {
+        path: '/activity/pubQ',
+        component: pubQ
+      },
+      {
+        path: '/activity/pubT',
+        component: pubT
+      },
+      {
+        path: '/help/help',
+        component: help
+      },
+      {
+        path: '/help/problem',
+        component: problem
+      },
+      {
+        path: '/help/advice',
+        component: advice
+      },
+      {
+        path: '/help/about',
+        component: about
+      },
+      {
+        path: '/mainpage/mainpagePub',
+        component: mainpagePub
+      },
+      {
+        path: '/mainpage/mainpageTask',
+        component: mainpageTask
+      },
+      {
+        path: '/personal/:person',
+        component: person
+      },
+      {
+        path: '/personal/:person/comment',
+        component: comment
+      },
+      {
+        path: '/personal/:person/info/changePW',
+        component: changePW
+      },
+      {
+        path: '/personal/:person/info/manageAccount',
+        component: manageAccount
+      },
+      {
+        path: '/personal/:person/info/modifyInfo',
+        component: modifyInfo
+      },
+      {
+        path: '/personal/:person/message/',
+        component: message
+      },
+      {
+        path: '/personal/:person/pub/psPubQ',
+        component: psPubQ,
+        name: 'pspubQ'
+      },
+      {
+        path: '/personal/:person/pub/psPubT',
+        component: psPubT,
+        name: 'pspubT'
+      },
+      {
+        path: '/personal/:person/task/psPub',
+        component: psPub
+      },
+      {
+        path: '/personal/:person/task/psTask',
+        component: psTask
+      },
+      {
+        path: '/personal/:person/wallet/alipay',
+        component: alipay
+      },
+      {
+        path: '/personal/:person/wallet/withdrawProcess',
+        component: withdrawProcess
+      },
+      {
+        path: '/personal/:person/wallet/wallet',
+        component: wallet
+      },
+      {
+        path: '/personal/:person/wallet/withdraw',
+        component: withdraw
+      },
+      {
+        path: '/task/allTask',
+        component: allTask,
+        name: 'alltask'
+      },
+      {
+        path: '/task/taskDetail',
+        component: taskDetail
+      },
+    ]
+  }, ]
 })
