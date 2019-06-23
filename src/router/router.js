@@ -164,7 +164,8 @@ export default new Router({
         },
         {
           path: '/task/allTask',
-          component: allTask
+          component: allTask,
+          name: 'alltask'
         },
         {
           path: '/task/taskDetail',
