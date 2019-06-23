@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="four wide column  left aligned">
-                <button class="ui big blue  button" >查看任务列表</button>
+                <router-link :to="{name: 'alltask'}"  class="ui big blue  button" >查看任务列表</router-link>
             </div>
             <div class="four wide column "></div>
             <div class="row "></div>

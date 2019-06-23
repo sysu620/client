@@ -76,7 +76,7 @@ export default new Router({
         },
         {
           path: '/register',
-          component: reqister
+          component: register
         },
         {
           path: '/protocol',
