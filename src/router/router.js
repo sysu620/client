@@ -40,11 +40,11 @@ const modifyInfo = r => require.ensure([], () => r(require('../pages/personal/In
 const message = r => require.ensure([], () => r(require('../pages/personal/message/message')), 'message')
 
 //personal/pub
-const psPubQ = HelloWorld;
-const psPubT = HelloWorld;
+const psPubQ = r => require.ensure([], () => r(require('../pages/personal/pub/question/myQuestionare')), 'psPubQ')
+const psPubT = r => require.ensure([], () => r(require('../pages/personal/pub/task/myTask')), 'psPubT')
 
 //personal/task
-const psPub = HelloWorld;
+const psPub = r => require.ensure([], () => r(require('../pages/personal/task/mypublish')), 'psPub');
 const psTask = r => require.ensure([], () => r(require('../pages/personal/task/mytask')), 'psTask')
 
 //personal/wallet
