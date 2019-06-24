@@ -1,6 +1,6 @@
 <template>
   <div class="semantic-component">
-    <div class="ui blue secondary  inverted menu">
+    <div class="ui blue secondary inverted menu">
       <div class="right menu">
         <a class="ui item">
           <i class="large bell icon"></i>
@@ -16,20 +16,18 @@
         <div class="ui center aligned container">
           <i class="circular centered huge teal dollar icon"></i>
         </div>
-        <br />
-        <br />
+        <br>
+        <br>
         <div class="ui center aligned container">
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label f">
-                请输入支付宝账号
-              </div>
+              <div class="ui label f">请输入支付宝账号</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
-          <br />
-          <br />
+          <br>
+          <br>
+          <br>
           <div class="ui animated button" tabindex="0">
             <div class="visible content">绑定</div>
             <div class="hidden content">
@@ -39,34 +37,28 @@
         </div>
       </div>
       <div class="three wide column"></div>
-
     </div>
-
   </div>
 </template>
 
 
 <script>
-  export default {
-
-  }
-
+export default {};
 </script>
 
 
 <style scoped>
-  .semantic-component {
-    background-color: #F2F6FC;
-  }
+.semantic-component {
+  background-color: #f2f6fc;
+}
 
-  .ton {
-    background-color: white;
-  }
+.ton {
+  background-color: white;
+}
 
-  .f {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(102, 102, 255, 0.349019607843137);
-    font-size: 19px;
-  }
-
+.f {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(102, 102, 255, 0.349019607843137);
+  font-size: 19px;
+}
 </style>

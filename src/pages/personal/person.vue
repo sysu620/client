@@ -1,6 +1,6 @@
 <template>
   <div class="semantic-component">
-    <div class="ui blue secondary  inverted menu">
+    <div class="ui blue secondary inverted menu">
       <div class="right menu">
         <a class="ui item">
           <i class="large bell icon"></i>
@@ -22,7 +22,7 @@
             <div class="three wide column"></div>
             <div class="four wide column">
               <img class="ui centered small circular image" src="../../assets/nan.jpg">
-              <br />
+              <br>
               <div class="ui center aligned container">
                 <a class="ui item">
                   <i class="large edit icon"></i>
@@ -40,7 +40,6 @@
             <div class="two wide column"></div>
             <div class="row"></div>
             <div class="row">
-
               <div class="teal five wide column">
                 <div class="ui center aligned container">
                   <a class="ui item">
@@ -80,40 +79,31 @@
         </div>
       </div>
       <div class="three wide column"></div>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
-  export default {
-
-
-
-  }
-
+export default {};
 </script>
 
 
 <style scoped>
-  .semantic-component {
-    background-color: #F2F6FC;
-  }
+.semantic-component {
+  background-color: #f2f6fc;
+}
 
-  .ton {
-    background-color: white;
-  }
+.ton {
+  background-color: white;
+}
 
-  .f {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(102, 102, 255, 0.349019607843137);
-    font-size: 1em;
-  }
+.f {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(102, 102, 255, 0.349019607843137);
+  font-size: 1em;
+}
 
-  #main1 {
-    padding-top: 48px;
-  }
-
+#main1 {
+  padding-top: 48px;
+}
 </style>

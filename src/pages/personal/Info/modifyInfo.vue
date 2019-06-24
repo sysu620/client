@@ -1,6 +1,6 @@
 <template>
   <div class="semantic-component">
-    <div class="ui blue secondary  inverted menu">
+    <div class="ui blue secondary inverted menu">
       <div class="right menu">
         <a class="ui item">
           <i class="large bell icon"></i>
@@ -15,48 +15,38 @@
       <div class="ten wide column ton">
         <div class="ui center aligned container">
           <img src="../../../assets/nan.jpg" class="ui centered small circular image">
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                昵称
-              </div>
+              <div class="ui label">昵称</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                学号
-              </div>
+              <div class="ui label">学号</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                姓名
-              </div>
+              <div class="ui label">姓名</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                年龄
-              </div>
+              <div class="ui label">年龄</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                性别
-              </div>
+              <div class="ui label">性别</div>
               <div class="ui selection dropdown">
                 <input type="hidden" name="gender">
                 <i class="dropdown icon"></i>
@@ -68,63 +58,56 @@
               </div>
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                年级
-              </div>
+              <div class="ui label">年级</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
+          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">
-                专业
-              </div>
+              <div class="ui label">专业</div>
               <input type="text" placeholder="mysite.com">
             </div>
           </div>
-          <br />
-          <br />
+          <br>
+          <br>
           <div class="ui buttons">
             <button class="ui large button">保存</button>
             <div class="or"></div>
             <button class="ui positive large button">取消</button>
           </div>
-
         </div>
       </div>
       <div class="three wide column"></div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-  export default {
-    mounted() {
-      $(this.$el).find('.ui.dropdown').dropdown();
-    }
+export default {
+  mounted() {
+    $(this.$el)
+      .find(".ui.dropdown")
+      .dropdown();
   }
-
+};
 </script>
 
 <style scoped>
-  .semantic-component {
-    background-color: #F2F6FC;
-  }
+.semantic-component {
+  background-color: #f2f6fc;
+}
 
-  .ton {
-    background-color: white;
-  }
+.ton {
+  background-color: white;
+}
 
-  .f {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(102, 102, 255, 0.349019607843137);
-    font-size: 19px;
-  }
-
+.f {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(102, 102, 255, 0.349019607843137);
+  font-size: 19px;
+}
 </style>

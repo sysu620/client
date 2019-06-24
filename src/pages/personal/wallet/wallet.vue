@@ -1,6 +1,6 @@
 <template>
   <div class="semantic-component">
-    <div class="ui blue secondary  inverted menu">
+    <div class="ui blue secondary inverted menu">
       <div class="right menu">
         <a class="ui item">
           <i class="large bell icon"></i>
@@ -33,26 +33,23 @@
         </div>
       </div>
       <div class="three wide column"></div>
-
     </div>
-
   </div>
 </template>
 
 
 <style scoped>
-  .semantic-component {
-    background-color: #F2F6FC;
-  }
+.semantic-component {
+  background-color: #f2f6fc;
+}
 
-  .ton {
-    background-color: white;
-  }
+.ton {
+  background-color: white;
+}
 
-  .f {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(102, 102, 255, 0.349019607843137);
-    font-size: 19px;
-  }
-
+.f {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(102, 102, 255, 0.349019607843137);
+  font-size: 19px;
+}
 </style>
