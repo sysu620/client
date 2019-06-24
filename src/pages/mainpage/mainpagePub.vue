@@ -51,8 +51,12 @@
           <div class="ui grid">
             <div class="fifteen wide column ton black_border">
               <div class="ui buttons">
-                <router-link class="ui button" to="/mainpage/mainpageTask">我的任务</router-link>
-                <router-link class="ui button positive" to="/mainpage/mainpagePub">我的发布</router-link>
+                <router-link :to="{ name:'mainpageTask', params: { person: this.userId }}"
+                  class="ui button"
+                >我的任务</router-link>
+                <router-link :to="{ name:'mainpagePub', params: { person: this.userId }}"
+                  class="ui button positive"
+                >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
                 <div class="ui grid mline">
@@ -79,7 +83,7 @@
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
                     <router-link
-                      :to="{name: 'pspubQ', params: {person: me}}"
+                      :to="{name: 'pspubQ', params: {person: this.userId}}"
                       class="ui small blue button"
                       style="width:120px;"
                     >查看全部</router-link>
@@ -395,17 +399,22 @@
 
 
 <script>
+import { mapActions, mapState } from "vuex";
+import { async } from "q";
+
 export default {
   data() {
     return {
-      me: "hbx",
       searchText: ""
     };
   },
+  computed: {
+    ...mapState(["userId"])
+  },
   methods: {},
   beforeRouteLeave(to, from, next) {
+    alert(this.userId)
     //search
-    window.confirm("you enter: " + this.searchText + " do you want to leave?");
   }
 };
 </script>

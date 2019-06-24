@@ -28,7 +28,7 @@
           <br>
           <div class="ui container">
             <div class="ui left corner big labeled input">
-              <input v-model="passwd" type="text" placeholder="    请输入登录密码">
+              <input v-model="password" type="text" placeholder="    请输入登录密码">
               <div class="ui left corner label">
                 <i class="lock icon"></i>
               </div>
@@ -57,7 +57,8 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
+import { async } from "q";
 
 export default {
   mounted() {
@@ -68,14 +69,21 @@ export default {
   data() {
     return {
       account: "",
-      passwd: ""
+      password: ""
     };
+  },
+  computed: {
+    ...mapState(["userId"])
   },
   methods: {
     ...mapActions(["userLogin"]),
-    login() {
-      let body = { userId: this.account, passwd: this.passwd };
-      this.userLogin(body);
+    async login() {
+      let body = { userId: parseInt(this.account), password: this.password };
+      let a = await this.userLogin(body);
+      this.$router.push({
+        name: "mainpagePub",
+        params: { person: this.userId }
+      });
     }
   }
 };

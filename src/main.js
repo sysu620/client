@@ -5,6 +5,7 @@ import App from "./App";
 import router from "./router/router";
 import "../semantic/dist/semantic.min.css";
 import "../semantic/dist/semantic.min.js";
+import store from './store/'
 import swal from "sweetalert";
 
 Vue.config.productionTip = false;
@@ -13,6 +14,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: "#app",
   router,
+  store,
   components: {
     App
   },

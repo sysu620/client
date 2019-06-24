@@ -8,7 +8,9 @@ export default {
       userId: payload.userId,
       password: payload.password
     };
-    let res = await signIn(body);
-    commit(RECORD_USERINFO, res);
+    let header =  {headers: {"Content-Type": "application/json"}}
+    let res = await signIn({"body": body, "$config": header});
+    console.log(res.data.token)
+    commit(RECORD_USERINFO, {'token': res.data.token, 'userId': payload.userId});
   }
 };

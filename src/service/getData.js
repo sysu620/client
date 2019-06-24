@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from "axios";
 import qs from "qs";
-let domain = "";
+let domain = "/api";
 export const getDomain = () => {
   return domain;
 };
@@ -848,6 +848,7 @@ export const signUpURL = function(parameters = {}) {
 export const signIn = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain();
   const config = parameters.$config;
+  console.log(config)
   let path = "/user/signin";
   let body;
   let queryParameters = {};
