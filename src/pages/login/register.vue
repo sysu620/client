@@ -18,7 +18,14 @@
           <div class="ui container">
             <div class="ui large labeled input">
               <div class="ui label">昵称</div>
-              <input type="text" placeholder="mysite.com">
+              <input type="text" placeholder="mysite.com" v-model="username">
+            </div>
+          </div>
+          <br>
+          <div class="ui container">
+            <div class="ui large labeled input">
+              <div class="ui label">学校</div>
+              <input type="text" placeholder="mysite.com" v-model="university">
             </div>
           </div>
           <br>
@@ -29,21 +36,22 @@
             </div>
           </div>
           <br>
-          <div class="ui center aligned container">
-            <button class="ui teal small button">发送验证码</button>
-          </div>
-          <br>
           <div class="ui container">
             <div class="ui large labeled input">
-              <div class="ui label">验证</div>
-              <input type="text" placeholder="验证码">
+              <div class="ui label">email</div>
+              <input type="text" placeholder="mysite.com" v-model="email">
             </div>
           </div>
           <br>
+
           <div class="ui container">
             <div class="ui large labeled input">
               <div class="ui label">密码</div>
-              <input :type="showPassword == true?'text':'password'" placeholder="password" v-model="password">
+              <input
+                :type="showPassword == true?'text':'password'"
+                placeholder="password"
+                v-model="password"
+              >
             </div>
           </div>
 
@@ -51,7 +59,11 @@
           <div class="ui container">
             <div class="ui large labeled input">
               <div class="ui label">密码</div>
-              <input :type="showPassword == true?'text':'password'" placeholder="请再次输入密码" v-model="passwordagain">
+              <input
+                :type="showPassword == true?'text':'password'"
+                placeholder="请再次输入密码"
+                v-model="passwordagain"
+              >
             </div>
           </div>
           <br>
@@ -75,37 +87,76 @@
 </template>
 
 <script>
+import swal from "sweetalert";
+import { signUp } from "../../service/getData";
+import { setStore } from "../../config/mUtils";
 export default {
   mounted() {
     $(this.$el)
       .find(".ui.dropdown")
       .dropdown();
   },
-  data(){
-      return {
-          phoneNumber: null, //电话号码
-          password: null, //密码
-          passwordagain: null, //密码
-          showPassword: false, // 是否显示密码
-          isChecked: false, //是否同意用户协议
-
-      }
-
+  data() {
+    return {
+      phoneNumber: null, //电话号码
+      password: null, //密码
+      passwordagain: null, //密码
+      showPassword: false, // 是否显示密码
+      isChecked: false, //是否同意用户协议
+      username: "", //昵称
+      university: "", //学校
+      userId: 0, //Id，后台给
+      balance: 0, //余而
+      email: ""
+    };
   },
-    computed: {
+  computed: {
     //判断手机号码
-    rightPhoneNumber: function (){
-        return /^1\d{10}$/gi.test(this.phoneNumber)
+    rightPhoneNumber: function() {
+      return /^1\d{10}$/gi.test(this.phoneNumber);
     }
-},
+  },
   methods: {
-      register(){
-          if (!this.rightPhoneNumber) {
-            swal('invalid phone number');
-
-          }
+    async register() {
+      if (!this.rightPhoneNumber) {
+        swal("invalid phone number");
       }
-      
+      if (this.password != this.passwordagain) {
+        swal("enter same password");
+      }
+      if (!this.isChecked) {
+        swal("please agree the protocol");
+      }
+      let body = {
+        userId: parseInt(this.userId),
+        password: String(this.password),
+        username: String(this.username),
+        university: String(this.university),
+        grade: String(this.grade),
+        phone: String(this.phoneNumber),
+        major: String(this.major),
+        email: String(this.email),
+        balance: parseInt(this.balance)
+      };
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start register");
+      let res = await signUp({ body: body, $config: header }).catch(e => {
+        swal(e.response.data.error);
+      });
+      console.log(res.data);
+      setStore("userId", res.data.userId);
+      setStore("username", res.data.username);
+      setStore("university", res.data.university);
+      setStore("grade", res.data.grade);
+      setStore("phone", res.data.phone);
+      setStore("major", res.data.major);
+      setStore("email", res.data.email);
+      setStore("balance", res.data.balance);
+      this.$router.push({
+        name: "mainpagePub",
+        params: { person: res.data.userId }
+      });
+    }
   }
 };
 </script>

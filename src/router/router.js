@@ -142,7 +142,8 @@ export default new Router({
         },
         {
           path: "/personal/:person/message/",
-          component: message
+          component: message,
+          name: 'message'
         },
         {
           path: "/personal/:person/pub/psPubQ",

@@ -2,7 +2,7 @@
   <div class="semantic-component">
     <div class="ui blue secondary inverted menu">
       <div class="right menu">
-        <a class="ui item">
+        <a class="ui item" @click="$router.push({name: 'message', params:{person: person}})">
           <i class="large bell icon"></i>
         </a>
         <a class="ui item" @click="$router.go(-1)">
@@ -68,7 +68,7 @@
             <div class="row">
               <div class="ui column">
                 <div class="ui center aligned container">
-                  <a class="ui item">
+                  <a class="ui item" @click="signout">
                     <i class="huge sign out alternate icon"></i>
                   </a>
                 </div>
@@ -84,17 +84,24 @@
 </template>
 
 <script>
+import { getStore } from '../../config/mUtils';
+import { signOut } from '../../service/getData';
 export default {
   data () {
     return {
-      studentId: 'hbx',
+      studentId: getStore('userId'),
       name: 'hbx123',
       age: 12,
       sex: 'man',
       grade : 12,
       major: 'computer science',
-      person: 123
+      person: getStore('userId')
     }
+  },
+  methods: {
+    async signout() {
+      await signOut().catch(e=>{console.log(e.response.data.error)});
+    } 
   }
 };
 </script>

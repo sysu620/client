@@ -1,35 +1,31 @@
 /* eslint-disable */
-import axios from "axios";
-import qs from "qs";
-let domain = "/api";
+import axios from 'axios'
+import qs from 'qs'
+let domain = ''
 export const getDomain = () => {
-  return domain;
-};
-export const setDomain = $domain => {
-  domain = $domain;
-};
+  return domain
+}
+export const setDomain = ($domain) => {
+  domain = $domain
+}
 export const request = (method, url, body, queryParameters, form, config) => {
-  method = method.toLowerCase();
-  let keys = Object.keys(queryParameters);
-  let queryUrl = url;
+  method = method.toLowerCase()
+  let keys = Object.keys(queryParameters)
+  let queryUrl = url
   if (keys.length > 0) {
-    queryUrl = url + "?" + qs.stringify(queryParameters);
+    queryUrl = url + '?' + qs.stringify(queryParameters)
   }
   // let queryUrl = url+(keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
   if (body) {
-    return axios[method](queryUrl, body, config);
-  } else if (method === "get") {
-    return axios[method](
-      queryUrl,
-      {
-        params: form
-      },
-      config
-    );
+    return axios[method](queryUrl, body, config)
+  } else if (method === 'get') {
+    return axios[method](queryUrl, {
+      params: form
+    }, config)
   } else {
-    return axios[method](queryUrl, qs.stringify(form), config);
+    return axios[method](queryUrl, qs.stringify(form), config)
   }
-};
+}
 /*==========================================================
  *                    
  ==========================================================*/
@@ -42,54 +38,43 @@ export const request = (method, url, body, queryParameters, form, config) => {
  * @param body - Task form information should be posted(任务表单)
  */
 export const publishQTask = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/publishQuery";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/publishQuery'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("post", domain + path, body, queryParameters, form, config);
-};
+  return request('post', domain + path, body, queryParameters, form, config)
+}
 export const publishQTask_RAW_URL = function() {
-  return "/user/publishQuery";
-};
+  return '/user/publishQuery'
+}
 export const publishQTask_TYPE = function() {
-  return "post";
-};
+  return 'post'
+}
 export const publishQTaskURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/publishQuery";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/publishQuery'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * publish a new deliveryTask(发布一个新的快递任务，需要填写表单)
  * request: publishDTask
@@ -99,54 +84,43 @@ export const publishQTaskURL = function(parameters = {}) {
  * @param body - Task form information should be posted(任务表单)
  */
 export const publishDTask = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/publishDelivery";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/publishDelivery'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("post", domain + path, body, queryParameters, form, config);
-};
+  return request('post', domain + path, body, queryParameters, form, config)
+}
 export const publishDTask_RAW_URL = function() {
-  return "/user/publishDelivery";
-};
+  return '/user/publishDelivery'
+}
 export const publishDTask_TYPE = function() {
-  return "post";
-};
+  return 'post'
+}
 export const publishDTaskURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/publishDelivery";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/publishDelivery'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * accept a new task(接受一个新任务，需要绑定用户和任务)
  * request: acceptTask
@@ -156,54 +130,43 @@ export const publishDTaskURL = function(parameters = {}) {
  * @param body - the task that user accept(用户和接受的任务)
  */
 export const acceptTask = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/accept";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/accept'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("post", domain + path, body, queryParameters, form, config);
-};
+  return request('post', domain + path, body, queryParameters, form, config)
+}
 export const acceptTask_RAW_URL = function() {
-  return "/user/accept";
-};
+  return '/user/accept'
+}
 export const acceptTask_TYPE = function() {
-  return "post";
-};
+  return 'post'
+}
 export const acceptTaskURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/accept";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/accept'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * query a page of tasks accepted(获取一页用户接受的任务)
  * request: qAcceptPage
@@ -214,66 +177,55 @@ export const acceptTaskURL = function(parameters = {}) {
  * @param userId - the id of user
  */
 export const qAcceptPage = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/qAcceptPage";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/qAcceptPage'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["page"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: page"));
+  if (parameters['page'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: page'))
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const qAcceptPage_RAW_URL = function() {
-  return "/task/qAcceptPage";
-};
+  return '/task/qAcceptPage'
+}
 export const qAcceptPage_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const qAcceptPageURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/qAcceptPage";
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/qAcceptPage'
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * query a page of tasks published(获取一页用户发布的任务)
  * request: qPublishPage
@@ -284,66 +236,55 @@ export const qAcceptPageURL = function(parameters = {}) {
  * @param userId - the id of user
  */
 export const qPublishPage = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/qPublishPage";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/qPublishPage'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["page"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: page"));
+  if (parameters['page'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: page'))
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const qPublishPage_RAW_URL = function() {
-  return "/task/qPublishPage";
-};
+  return '/task/qPublishPage'
+}
 export const qPublishPage_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const qPublishPageURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/qPublishPage";
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/qPublishPage'
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * query a page of questionareTasks not accepted and not published by user(获取一页用户没接受过，也不是由用户发布的问卷任务)
  * request: queryPageQ
@@ -354,66 +295,55 @@ export const qPublishPageURL = function(parameters = {}) {
  * @param userId - the id of user
  */
 export const queryPageQ = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/queryPageQ";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/queryPageQ'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["page"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: page"));
+  if (parameters['page'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: page'))
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const queryPageQ_RAW_URL = function() {
-  return "/task/queryPageQ";
-};
+  return '/task/queryPageQ'
+}
 export const queryPageQ_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const queryPageQURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/queryPageQ";
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/queryPageQ'
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * query a page of delivery tasks not accepted and not published by user(获取一页用户没接受过，也不是由用户发布的快递任务)
  * request: queryPageD
@@ -424,66 +354,55 @@ export const queryPageQURL = function(parameters = {}) {
  * @param userId - the id of user
  */
 export const queryPageD = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/queryPageD";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/queryPageD'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["page"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: page"));
+  if (parameters['page'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: page'))
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const queryPageD_RAW_URL = function() {
-  return "/task/queryPageD";
-};
+  return '/task/queryPageD'
+}
 export const queryPageD_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const queryPageDURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/queryPageD";
-  if (parameters["page"] !== undefined) {
-    queryParameters["page"] = parameters["page"];
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/queryPageD'
+  if (parameters['page'] !== undefined) {
+    queryParameters['page'] = parameters['page']
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * query some tasks not accepted and not published by user by title(通过标题查询获取用户没接受过，也不是由用户发布的任务)
  * request: queryTitle
@@ -494,66 +413,55 @@ export const queryPageDURL = function(parameters = {}) {
  * @param userId - the id of user
  */
 export const queryTitle = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/queryTitle";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["title"] !== undefined) {
-    queryParameters["title"] = parameters["title"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/queryTitle'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['title'] !== undefined) {
+    queryParameters['title'] = parameters['title']
   }
-  if (parameters["title"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: title"));
+  if (parameters['title'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: title'))
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const queryTitle_RAW_URL = function() {
-  return "/task/queryTitle";
-};
+  return '/task/queryTitle'
+}
 export const queryTitle_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const queryTitleURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/queryTitle";
-  if (parameters["title"] !== undefined) {
-    queryParameters["title"] = parameters["title"];
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/queryTitle'
+  if (parameters['title'] !== undefined) {
+    queryParameters['title'] = parameters['title']
   }
-  if (parameters["userId"] !== undefined) {
-    queryParameters["userId"] = parameters["userId"];
+  if (parameters['userId'] !== undefined) {
+    queryParameters['userId'] = parameters['userId']
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * get a questionareTask by taskId(通过任务id获取一个问卷任务)
  * request: getQuestionare
@@ -563,53 +471,42 @@ export const queryTitleURL = function(parameters = {}) {
  * @param taskId - the id of tasks
  */
 export const getQuestionare = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/quetionare/{taskId}";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  path = path.replace("{taskId}", `${parameters["taskId"]}`);
-  if (parameters["taskId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: taskId"));
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/questionare/{taskId}'
+  let body
+  let queryParameters = {}
+  let form = {}
+  path = path.replace('{taskId}', `${parameters['taskId']}`)
+  if (parameters['taskId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: taskId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const getQuestionare_RAW_URL = function() {
-  return "/task/quetionare/{taskId}";
-};
+  return '/task/questionare/{taskId}'
+}
 export const getQuestionare_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const getQuestionareURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/quetionare/{taskId}";
-  path = path.replace("{taskId}", `${parameters["taskId"]}`);
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/questionare/{taskId}'
+  path = path.replace('{taskId}', `${parameters['taskId']}`)
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * get a deliveryTask by taskId(通过任务id获取一个快递任务)
  * request: getDelivery
@@ -619,53 +516,133 @@ export const getQuestionareURL = function(parameters = {}) {
  * @param taskId - the id of tasks
  */
 export const getDelivery = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/task/delivery/{taskId}";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  path = path.replace("{taskId}", `${parameters["taskId"]}`);
-  if (parameters["taskId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: taskId"));
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/delivery/{taskId}'
+  let body
+  let queryParameters = {}
+  let form = {}
+  path = path.replace('{taskId}', `${parameters['taskId']}`)
+  if (parameters['taskId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: taskId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const getDelivery_RAW_URL = function() {
-  return "/task/delivery/{taskId}";
-};
+  return '/task/delivery/{taskId}'
+}
 export const getDelivery_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const getDeliveryURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/task/delivery/{taskId}";
-  path = path.replace("{taskId}", `${parameters["taskId"]}`);
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/delivery/{taskId}'
+  path = path.replace('{taskId}', `${parameters['taskId']}`)
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
+  }
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
+/**
+ * get all answers of questionareId by questionareId(通过任务id获取一个快递任务)
+ * request: getAnswer
+ * url: getAnswerURL
+ * method: getAnswer_TYPE
+ * raw_url: getAnswer_RAW_URL
+ * @param questionareId - the id of questionare
+ */
+export const getAnswer = function(parameters = {}) {
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/task/answer/{questionareId}'
+  let body
+  let queryParameters = {}
+  let form = {}
+  path = path.replace('{questionareId}', `${parameters['questionareId']}`)
+  if (parameters['questionareId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: questionareId'))
+  }
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
+export const getAnswer_RAW_URL = function() {
+  return '/task/answer/{questionareId}'
+}
+export const getAnswer_TYPE = function() {
+  return 'get'
+}
+export const getAnswerURL = function(parameters = {}) {
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/task/answer/{questionareId}'
+  path = path.replace('{questionareId}', `${parameters['questionareId']}`)
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
+  }
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
+/**
+ * fill out a questionare and post the answer(将用户填写的答案传输到后台)
+ * request: fillQuery
+ * url: fillQueryURL
+ * method: fillQuery_TYPE
+ * raw_url: fillQuery_RAW_URL
+ * @param body - the answer should be posted
+ */
+export const fillQuery = function(parameters = {}) {
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/fillQuestionare'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
+  }
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
+  }
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    });
+  }
+  return request('post', domain + path, body, queryParameters, form, config)
+}
+export const fillQuery_RAW_URL = function() {
+  return '/user/fillQuestionare'
+}
+export const fillQuery_TYPE = function() {
+  return 'post'
+}
+export const fillQueryURL = function(parameters = {}) {
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/fillQuestionare'
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
+  }
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * finish a accepted task by userId and TaskId(通过用户id和任务id完成一个已接收的任务)
  * request: finishAccept
@@ -675,54 +652,43 @@ export const getDeliveryURL = function(parameters = {}) {
  * @param body - the task that user accept(用户和接受的任务)
  */
 export const finishAccept = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/finishAccept";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/finishAccept'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("delete", domain + path, body, queryParameters, form, config);
-};
+  return request('put', domain + path, body, queryParameters, form, config)
+}
 export const finishAccept_RAW_URL = function() {
-  return "/user/finishAccept";
-};
+  return '/user/finishAccept'
+}
 export const finishAccept_TYPE = function() {
-  return "delete";
-};
+  return 'put'
+}
 export const finishAcceptURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/finishAccept";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/finishAccept'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * finish a published task(结束/取消一个已发布的任务)
  * request: finishPublish
@@ -732,54 +698,43 @@ export const finishAcceptURL = function(parameters = {}) {
  * @param body - the task
  */
 export const finishPublish = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/finishPublish";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/finishPublish'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("delete", domain + path, body, queryParameters, form, config);
-};
+  return request('put', domain + path, body, queryParameters, form, config)
+}
 export const finishPublish_RAW_URL = function() {
-  return "/user/finishPublish";
-};
+  return '/user/finishPublish'
+}
 export const finishPublish_TYPE = function() {
-  return "delete";
-};
+  return 'put'
+}
 export const finishPublishURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/finishPublish";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/finishPublish'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * sign up
  * request: signUp
@@ -789,54 +744,43 @@ export const finishPublishURL = function(parameters = {}) {
  * @param body - User form information should be posted
  */
 export const signUp = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/signup";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/signup'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("post", domain + path, body, queryParameters, form, config);
-};
+  return request('post', domain + path, body, queryParameters, form, config)
+}
 export const signUp_RAW_URL = function() {
-  return "/user/signup";
-};
+  return '/user/signup'
+}
 export const signUp_TYPE = function() {
-  return "post";
-};
+  return 'post'
+}
 export const signUpURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/signup";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/signup'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * sign in
  * request: signIn
@@ -846,108 +790,124 @@ export const signUpURL = function(parameters = {}) {
  * @param body - User form information should be posted, include userId and password
  */
 export const signIn = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  console.log(config)
-  let path = "/user/signin";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  if (parameters["body"] !== undefined) {
-    body = parameters["body"];
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/signin'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters['body'] !== undefined) {
+    body = parameters['body']
   }
-  if (parameters["body"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: body"));
+  if (parameters['body'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: body'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("post", domain + path, body, queryParameters, form, config);
-};
+  return request('post', domain + path, body, queryParameters, form, config)
+}
 export const signIn_RAW_URL = function() {
-  return "/user/signin";
-};
+  return '/user/signin'
+}
 export const signIn_TYPE = function() {
-  return "post";
-};
+  return 'post'
+}
 export const signInURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/signin";
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/signin'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
-    });
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
 /**
  * get user by userId
  * request: getUser
  * url: getUserURL
  * method: getUser_TYPE
  * raw_url: getUser_RAW_URL
- * @param userId -
+ * @param userId - 
  */
 export const getUser = function(parameters = {}) {
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  const config = parameters.$config;
-  let path = "/user/{userId}";
-  let body;
-  let queryParameters = {};
-  let form = {};
-  path = path.replace("{userId}", `${parameters["userId"]}`);
-  if (parameters["userId"] === undefined) {
-    return Promise.reject(new Error("Missing required  parameter: userId"));
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/{userId}'
+  let body
+  let queryParameters = {}
+  let form = {}
+  path = path.replace('{userId}', `${parameters['userId']}`)
+  if (parameters['userId'] === undefined) {
+    return Promise.reject(new Error('Missing required  parameter: userId'))
   }
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  return request("get", domain + path, body, queryParameters, form, config);
-};
+  return request('get', domain + path, body, queryParameters, form, config)
+}
 export const getUser_RAW_URL = function() {
-  return "/user/{userId}";
-};
+  return '/user/{userId}'
+}
 export const getUser_TYPE = function() {
-  return "get";
-};
+  return 'get'
+}
 export const getUserURL = function(parameters = {}) {
-  let queryParameters = {};
-  const domain = parameters.$domain ? parameters.$domain : getDomain();
-  let path = "/user/{userId}";
-  path = path.replace("{userId}", `${parameters["userId"]}`);
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/{userId}'
+  path = path.replace('{userId}', `${parameters['userId']}`)
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-      queryParameters[parameterName] =
-        parameters.$queryParameters[parameterName];
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
+  }
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}
+/**
+ * sign out
+ * request: signOut
+ * url: signOutURL
+ * method: signOut_TYPE
+ * raw_url: signOut_RAW_URL
+ */
+export const signOut = function(parameters = {}) {
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  const config = parameters.$config
+  let path = '/user/signout'
+  let body
+  let queryParameters = {}
+  let form = {}
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
     });
   }
-  let keys = Object.keys(queryParameters);
-  return (
-    domain +
-    path +
-    (keys.length > 0
-      ? "?" +
-        keys
-          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
-          .join("&")
-      : "")
-  );
-};
+  return request('delete', domain + path, body, queryParameters, form, config)
+}
+export const signOut_RAW_URL = function() {
+  return '/user/signout'
+}
+export const signOut_TYPE = function() {
+  return 'delete'
+}
+export const signOutURL = function(parameters = {}) {
+  let queryParameters = {}
+  const domain = parameters.$domain ? parameters.$domain : getDomain()
+  let path = '/user/signout'
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+    })
+  }
+  let keys = Object.keys(queryParameters)
+  return domain + path + (keys.length > 0 ? '?' + (keys.map(key => key + '=' + encodeURIComponent(queryParameters[key])).join('&')) : '')
+}

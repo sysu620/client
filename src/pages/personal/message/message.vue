@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item" @click="$router.go(-1)">
+        <a class="ui item" @click="$router.push({name: 'person', params: {person: person}})">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>
@@ -160,6 +160,18 @@
     </div>
   </div>
 </template>
+
+<script>
+import { getStore } from '../../../config/mUtils';
+export default {
+  data () {
+    return {
+      person: getStore('userId'),
+
+    }
+  }
+}
+</script>
 
 
 <style scoped>
