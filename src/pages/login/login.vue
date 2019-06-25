@@ -79,7 +79,7 @@ export default {
       let body = { userId: parseInt(this.account), password: this.password };
       let header =  {headers: {"Content-Type": "application/json"}};
       console.log('start request');
-      let res = await signIn({"body": body, "$config": header}).catch(e=>{swal(e.response.data.error)});
+      let res = await signIn({"body": body, "$config": header});
       console.log(res.data.token);
       setStore('userId', body.userId);
       setStore('token', res.data.token);

@@ -25,15 +25,7 @@
                     任务类型
                   </div>
                   <div class="twelve wide column">
-                    <div class="ui selection dropdown">
-                      <input type="hidden" name="task_type">
-                      <i class="dropdown icon"></i>
-                      <div class="default text">任务类型</div>
-                      <div class="menu">
-                        <div class="item" data-value="0">问卷填写</div>
-                        <div class="item" data-value="1">快递收取</div>
-                      </div>
-                    </div>
+                    快递拿取
                   </div>
 
                   <div class="four wide column ">
@@ -149,9 +141,18 @@
 <script>
 import { getStore } from '../../config/mUtils';
 export default {
+  mounted() {
+    $(this.$el)
+      .find(".ui.dropdown")
+      .dropdown();
+  },
   data () {
     return {
       person: getStore('userId'),
+      taskType: "delivery",
+      taskId: 0,
+      taskTitle: ""
+
       
     }
   }

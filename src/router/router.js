@@ -1,7 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import HelloWorld from "@/components/HelloWorld";
-import test from "@/components/test";
 // import passwd from '@/pages/'
 import App from "../App";
 Vue.use(Router);
@@ -85,11 +83,13 @@ export default new Router({
         },
         {
           path: "/activity/pubQ",
-          component: pubQ
+          component: pubQ,
+          name: 'pubQ'
         },
         {
           path: "/activity/pubT",
-          component: pubT
+          component: pubT,
+          name: 'pubT',
         },
         {
           path: "/help/help",

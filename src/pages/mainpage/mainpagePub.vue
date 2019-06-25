@@ -61,21 +61,14 @@
                 >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
-                <div class="ui grid mline">
-                  <div class="one wide column"></div>
-                  <div class="seven wide column left aligned">我发布的快递1</div>
-                  <div class="seven wide column right aligned">发布时间：2019-4-27 18:00</div>
-                  <div class="one wide column"></div>
-                </div>
-                <div class="ui divider"></div>
 
-                <div class="ui grid mline">
-                  <div class="one wide column"></div>
-                  <div class="seven wide column left aligned">我发布的问卷1</div>
-                  <div class="seven wide column right aligned">发布时间：2019-4-27 18:00</div>
-                  <div class="one wide column"></div>
-                </div>
-                <div class="ui divider"></div>
+                  <taskitem 
+                  v-for="task in tasks"
+                  v-bind:key="task.taskId"
+                  v-bind:taskTitle="task.taskTitle"
+                  v-bind:endTime="task.endTime"
+                  >
+                  </taskitem>
 
                 <div class="row"></div>
                 <div class="row"></div>
@@ -411,16 +404,32 @@
 <script>
 import { async } from "q";
 import { getStore, setStore } from "../../config/mUtils";
+import taskitem from "../../components/task-item";
+import { qPublishPage } from '../../service/getData';
 
 export default {
   data() {
     return {
       searchText: "",
       person: getStore('userId'),
+      tasks: []
 
     };
   },
-  methods: {}
+  methods: {
+    async getTaskUserPub() {
+      let body = {page: 0, userId: parseInt(getStore('userId'))};
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await qPublishPage({"body": body, "$config": header});
+      this.tasks = res.data.contents;
+      console.log(tasks);
+
+    }
+  },
+  mounted(){
+    this.getTaskUserPub();
+  }
 };
 </script>
 
