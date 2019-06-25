@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item">
+        <a class="ui item" @click="$router.go(-1)">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>
@@ -44,7 +44,7 @@
           <br>
           <div class="ui center aligned container">
             <div class="ui buttons">
-              <button class="ui large button">注册新用户</button>
+              <router-link :to="{name: 'register'}" class="ui large button">注册新用户</router-link>
               <div class="or"></div>
               <button class="ui positive large button">忘记密码</button>
             </div>
@@ -57,8 +57,10 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
 import { async } from "q";
+import { getStore, setStore } from '../../config/mUtils'
+import { signIn, getUser } from "../../service/getData"
+import swal from "sweetalert"
 
 export default {
   mounted() {
@@ -72,17 +74,20 @@ export default {
       password: ""
     };
   },
-  computed: {
-    ...mapState(["userId"])
-  },
   methods: {
-    ...mapActions(["userLogin"]),
     async login() {
       let body = { userId: parseInt(this.account), password: this.password };
-      let a = await this.userLogin(body);
+      let header =  {headers: {"Content-Type": "application/json"}}
+      console.log('start request')
+      let res = await signIn({"body": body, "$config": header}).catch(e=>{
+          swal(e.response.data.error);
+      })
+      console.log(res.data.token)
+      setStore('userId', payload.userId)
+      setStore('token', res.data.token)
       this.$router.push({
         name: "mainpagePub",
-        params: { person: this.userId }
+        params: { person: getStore('userId') }
       });
     }
   }

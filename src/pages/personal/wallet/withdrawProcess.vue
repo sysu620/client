@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item">
+        <a class="ui item" @click="$router.go(-1)">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>

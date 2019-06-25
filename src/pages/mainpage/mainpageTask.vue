@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item">
+        <a class="ui item" @click="$router.go(-1)">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>
@@ -51,8 +51,14 @@
           <div class="ui grid">
             <div class="fifteen wide column ton black_border">
               <div class="ui buttons">
-                <router-link :to="{ name:'mainpageTask', params: { person: this.userId }}" class="ui button positive" >我的任务</router-link>
-                <router-link :to="{ name:'mainpagePub', params: { person: this.userId }}" class="ui button" >我的发布</router-link>
+                <router-link
+                  :to="{ name:'mainpageTask', params: { person: person }}"
+                  class="ui button positive"
+                >我的任务</router-link>
+                <router-link
+                  :to="{ name:'mainpagePub', params: { person: person }}"
+                  class="ui button"
+                >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
                 <div class="ui grid mline">
@@ -78,8 +84,8 @@
                 <div class="ui grid">
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
-                    <router-link v-if="userId"
-                      :to="{name: 'pspubT', params: {person: userId}}"
+                    <router-link
+                      :to="{name: 'pspubT', params: {person: person}}"
                       class="ui small blue button"
                       style="width:120px;"
                     >查看全部</router-link>
@@ -106,7 +112,7 @@
         </div>
       </div>
       <div class="four wide column left aligned">
-        <router-link :to="{name: 'alltask'}" class="ui big blue button">查看任务列表</router-link>
+        <router-link :to="{name: 'allTask'}" class="ui big blue button">查看任务列表</router-link>
       </div>
       <div class="four wide column"></div>
       <div class="row"></div>
@@ -237,7 +243,11 @@
                 <div class="ui grid">
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
-                    <button class="ui small blue button" style="width:120px;">查看全部</button>
+                    <router-link
+                      :to="{name: 'filterQuestion'}"
+                      class="ui small blue button"
+                      style="width:120px;"
+                    >查看全部</router-link>
                   </div>
                   <div class="one wide column"></div>
                 </div>
@@ -374,7 +384,11 @@
                 <div class="ui grid">
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
-                    <button class="ui small blue button" style="width:120px;">查看全部</button>
+                    <router-link
+                      :to="{name: 'filterDelivery'}"
+                      class="ui small blue button"
+                      style="width:120px;"
+                    >查看全部</router-link>
                   </div>
                   <div class="one wide column"></div>
                 </div>
@@ -395,20 +409,17 @@
 
 
 <script>
-import { mapActions, mapState } from "vuex";
 import { async } from "q";
 
 export default {
   data() {
-    return {};
+    return {
+      searchText: "",
+      person: "123"
+    };
   },
-  computed: {
-    ...mapState(["userId"])
-  },
-  methods: {},
-  beforeRouteLeave(to, from, next) {
-    //search
-  }
+
+  methods: {}
 };
 </script>
 

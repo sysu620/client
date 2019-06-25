@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item">
+        <a class="ui item" @click="$router.go(-1)">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>
@@ -17,13 +17,13 @@
           <div class="ui red padded grid">
             <div class="one wide column"></div>
             <div class="two wide column left aligned">
-              <button class="ui mini button">查看全部</button>
+              <router-link :to="{name: 'allTask'}" class="ui mini button">查看全部</router-link>
             </div>
             <div class="two wide column left aligned">
-              <button class="ui mini button">问卷任务</button>
+              <router-link :to="{name: 'filterQuestion'}" class="ui mini button">问卷任务</router-link>
             </div>
             <div class="two wide column left aligned">
-              <button class="ui mini blue button">快递任务</button>
+              <router-link :to="{name: 'filterDelivery'}" class="ui mini blue button">快递任务</router-link>
             </div>
             <div class="eight wide column right aligned">
               <div class="ui category search">

@@ -54,7 +54,7 @@ const wallet = r => require.ensure([], () => r(require("../pages/personal/wallet
 const withdraw = r => require.ensure([], () => r(require("../pages/personal/wallet/withdraw")), "withdraw");
 
 //task
-const allTask = HelloWorld;
+const allTask = r => require.ensure([], () => r(require("../pages/task/allTask")), "allTask");
 const taskDetail = r => require.ensure([], () => r(require("../pages/task/taskDetail")), "taskDetail");
 const filterDelivery = r => require.ensure([], () => r(require("../pages/task/filterDelivery")), "filterDelivery");
 const filterQuestion = r => require.ensure([], () => r(require("../pages/task/filterQuestion")), "filterQuestion");
@@ -71,11 +71,13 @@ export default new Router({
         },
         {
           path: "/login",
-          component: login
+          component: login,
+          name: 'login'
         },
         {
           path: "/register",
-          component: register
+          component: register,
+          name: "register"
         },
         {
           path: "/protocol",
@@ -91,7 +93,8 @@ export default new Router({
         },
         {
           path: "/help/help",
-          component: help
+          component: help,
+          name: 'help'
         },
         {
           path: "/help/problem",
@@ -117,11 +120,13 @@ export default new Router({
         },
         {
           path: "/personal/:person",
-          component: person
+          component: person,
+          name: 'person'
         },
         {
           path: "/personal/:person/comment",
-          component: comment
+          component: comment,
+          name: 'comment'
         },
         {
           path: "/personal/:person/info/changePW",
@@ -167,7 +172,8 @@ export default new Router({
         },
         {
           path: "/personal/:person/wallet/wallet",
-          component: wallet
+          component: wallet,
+          name: 'wallet'
         },
         {
           path: "/personal/:person/wallet/withdraw",
@@ -176,11 +182,21 @@ export default new Router({
         {
           path: "/task/allTask",
           component: allTask,
-          name: "alltask"
+          name: "allTask"
         },
         {
           path: "/task/taskDetail",
           component: taskDetail
+        },
+        {
+          path: "/task/filterDelivery",
+          component: filterDelivery,
+          name: "filterDelivery"
+        },
+        {
+          path: "/task/filterQuestion",
+          component: filterQuestion,
+          name: "filterQuestion"
         }
       ]
     }

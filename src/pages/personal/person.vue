@@ -5,7 +5,7 @@
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
-        <a class="ui item">
+        <a class="ui item" @click="$router.go(-1)">
           <i class="large sign out alternate icon"></i>
         </a>
       </div>
@@ -30,37 +30,37 @@
               </div>
             </div>
             <div class="seven wide column right aligned">
-              <p class="ui f">16340000-----------------------学号</p>
-              <p class="ui f">张大鱼-------------------------姓名</p>
-              <p class="ui f">21岁---------------------------年龄</p>
-              <p class="ui f">男-----------------------------性别</p>
-              <p class="ui f">大三---------------------------年级</p>
-              <p class="ui f">软件工程-----------------------专业</p>
+              <p class="ui f">{{studentId + '-----------------------学号'}}</p>
+              <p class="ui f">{{name + '-------------------------姓名'}}</p>
+              <p class="ui f">{{age + '---------------------------年龄'}}</p>
+              <p class="ui f">{{sex + '-----------------------------性别'}}</p>
+              <p class="ui f">{{grade + '---------------------------年级'}}</p>
+              <p class="ui f">{{major + '-----------------------专业'}}</p>
             </div>
             <div class="two wide column"></div>
             <div class="row"></div>
             <div class="row">
               <div class="teal five wide column">
                 <div class="ui center aligned container">
-                  <a class="ui item">
+                  <router-link :to="{name: 'wallet'}" class="ui item">
                     <i class="huge question circle outline icon"></i>
-                  </a>
+                  </router-link>
                 </div>
               </div>
               <div class="one wide column"></div>
               <div class="teal four wide column">
                 <div class="ui center aligned container">
-                  <a class="ui item">
+                  <router-link :to="{name: 'help'}" class="ui item">
                     <i class="huge dollar icon"></i>
-                  </a>
+                  </router-link>
                 </div>
               </div>
               <div class="one wide column"></div>
               <div class="teal five wide column">
                 <div class="ui center aligned container">
-                  <a class="ui item">
+                  <router-link :to="{name: 'comment', params: {person: person}}" class="ui item">
                     <i class="huge comment icon"></i>
-                  </a>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -84,8 +84,22 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data () {
+    return {
+      studentId: 'hbx',
+      name: 'hbx123',
+      age: 12,
+      sex: 'man',
+      grade : 12,
+      major: 'computer science',
+      person: 123
+    }
+  }
+};
 </script>
+
+
 
 
 <style scoped>
