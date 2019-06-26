@@ -61,14 +61,12 @@
                 >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
-
-                  <taskitem 
+                <taskitem
                   v-for="task in tasks"
                   v-bind:key="task.taskId"
                   v-bind:taskTitle="task.taskTitle"
                   v-bind:endTime="task.endTime"
-                  >
-                  </taskitem>
+                ></taskitem>
 
                 <div class="row"></div>
                 <div class="row"></div>
@@ -259,6 +257,7 @@
               <div class="ui container">
                 <h3>快递领取任务</h3>
                 <div class="ui grid">
+
                   <deliverypage
                   v-for="delivery in DeliveryPage"
                   v-bind:key="delivery.taskId"
@@ -268,6 +267,30 @@
                   >
 
                   </deliverypage>
+
+  <!-- <div>
+    <div class="one wide column "></div>
+    <div class="fourteen wide column red">
+      <div class="ui center aligned container">
+        <div class="ui grid top_0">
+          <div class="one wide column "></div>
+          <div class="fourteen wide column ton black_border">
+            <div class="ui container">
+              <h5>{{taskTitle}}</h5>
+              <p>内容：{{taskTitle}}</p>
+              <p>状态： {{state}}</p>
+              <p>截至日期：{{endTime}}</p>
+            </div>
+          </div>
+          <div class="row"></div>
+        </div>
+      </div>
+    </div>
+    <div class="one wide column "></div>
+  </div>                  
+  <deliverypage></deliverypage>
+                  <deliverypage></deliverypage> -->
+                  <!-- <div class="one wide column "></div> -->
                 </div>
 
                 <div class="ui grid">
@@ -302,43 +325,56 @@ import { async } from "q";
 import { getStore, setStore } from "../../config/mUtils";
 import taskitem from "../../components/task-item";
 import deliverypage from "../../components/deliverypage";
-import { qPublishPage, queryPageD, queryPageQ } from '../../service/getData';
+import { qPublishPage, queryPageD, queryPageQ } from "../../service/getData";
 
 export default {
   data() {
     return {
       searchText: "",
-      person: getStore('userId'),
-      tasks: getStore('taskUserPub'),
-      DeliveryPage:getStore('DeliveryPage'),
-      QuestionPage:getStore('QuestionPage'),
-
+      person: getStore("userId"),
+      tasks: [],
+      DeliveryPage: [],
+      QuestionPage: []
     };
   },
   methods: {
     async getTaskUserPub() {
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await qPublishPage({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
-      setStore('tasksUserPub', res.data.contents)
-
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await qPublishPage({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      console.log(res);
+      this.tasks = res.data.contents;
     },
     async gettaskDelivery() {
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await queryPageD({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
-      setStore('DeliveryPage', res.data.contents)
-
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await queryPageD({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      this.DeliveryPage = res.data.contents;
+      console.log("haha");
+      console.log(res);
+      console.log("heihei");
+      console.log(getStore("DeliveryPage"));
     },
-    async gettaskQuestion(){
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await queryPageQ({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
-      setStore('QuestionPage', res.data.contents)
-
+    async gettaskQuestion() {
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await queryPageQ({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      this.QuestionPage = res.data.contents;
     }
   },
-  mounted(){
+  mounted() {
     this.getTaskUserPub();
     this.gettaskDelivery();
     this.gettaskQuestion();

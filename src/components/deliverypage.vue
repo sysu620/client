@@ -1,36 +1,29 @@
 <template>
-  <div>
-    <div class="one wide column"></div>
-    <div class="four wide column">
-      <div class="ui center aligned container">
-        <div class="ui grid top_0">
-          <div class="one wide column"></div>
-          <div class="fourteen wide column ton black_border">
-            <div class="ui container">
-              <h5>{{taskTitle}}</h5>
-              <p>内容：挣闲钱意见</p>
-              <p>状态： {{state}}</p>
-              <p>截至日期：{{endTime}}</p>
+  <div class="five wide column">
+          <div class="ui center aligned container">
+            <div class="ui grid top_0">
+              <div class="four wide column"></div>
+              <div class="twelve wide column ton black_border">
+                <div class="ui container">
+                  <h5>{{taskTitle}}</h5>
+                  <p>内容：{{taskTitle}}</p>
+                  <p>状态： {{state}}</p>
+                  <p>截至日期：{{endTime}}</p>
+                </div>
+              </div>
+              <div class="row"></div>
             </div>
           </div>
-          <div class="one wide column"></div>
-          <div class="row"></div>
         </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {
-            
-        }
-    },
-    props:["taskTitle", "state", "endTime"]
-    
-}
+  data() {
+    return {};
+  },
+  props: ["taskTitle", "state", "endTime"]
+};
 </script>
 
 

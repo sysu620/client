@@ -405,13 +405,16 @@ import { async } from "q";
 import { getStore } from '../../config/mUtils';
 import { qAcceptPage } from '../../service/getData';
 import taskitem from "../../components/task-item";
+import deliverypage from "../../components/deliverypage";
 
 export default {
   data() {
     return {
       searchText: "",
       person: getStore('userId'),
-      tasks: []
+      tasks: [],
+      DeliveryPage: [],
+      QuestionPage: [],
     };
   },
   methods: {
@@ -422,14 +425,35 @@ export default {
       this.tasks = res.data.contents;
       console.log(tasks);
 
+    },
+    async gettaskDelivery() {
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await queryPageD({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      this.DeliveryPage = res.data.contents
+      console.log('haha')
+      console.log(res)
+      console.log('heihei')
+      console.log(getStore('DeliveryPage'))
+
+    },
+    async gettaskQuestion(){
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await queryPageQ({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      this.QuestionPage = res.data.contents
+
     }
   },
   mounted(){
     this.getTaskUserPick();
-    
+    this.gettaskDelivery();
+    this.gettaskQuestion();
+
   },
   components: {
-    taskitem
+    taskitem,
+    deliverypage
   }
 };
 </script>
