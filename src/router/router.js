@@ -157,11 +157,13 @@ export default new Router({
         },
         {
           path: "/personal/:person/task/psPub",
-          component: psPub
+          component: psPub,
+          name: 'psPub'
         },
         {
           path: "/personal/:person/task/psTask",
-          component: psTask
+          component: psTask,
+          name: 'psTask'
         },
         {
           path: "/personal/:person/wallet/alipay",

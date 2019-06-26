@@ -76,7 +76,7 @@
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
                     <router-link
-                      :to="{name: 'pspubQ', params: {person: person}}"
+                      :to="{name: 'psPub', params: {person: person}}"
                       class="ui small blue button"
                       style="width:120px;"
                     >查看全部</router-link>
@@ -117,118 +117,15 @@
               <div class="ui container">
                 <h3>填写问卷任务</h3>
                 <div class="ui grid">
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
+                  <deliverypage
+                  v-for="question in QuestionPage"
+                  v-bind:key="question.taskId"
+                  v-bind:taskTitle="question.taskTitle"
+                  v-bind:endTime="question.endTime"
+                  v-bind:state="question.state"
+                  >
 
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的问卷1</h5>
-                            <p>内容：挣闲钱意见</p>
-                            <p>需求份数： 10/50</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
+                  </deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -325,6 +222,7 @@ import { async } from "q";
 import { getStore, setStore } from "../../config/mUtils";
 import taskitem from "../../components/task-item";
 import deliverypage from "../../components/deliverypage";
+import questionpage from "../../components/questionpage";
 import { qPublishPage, queryPageD, queryPageQ } from "../../service/getData";
 
 export default {
@@ -348,6 +246,7 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
+      
     },
     async gettaskDelivery() {
       let header = { headers: { "Content-Type": "application/json" } };
@@ -372,6 +271,10 @@ export default {
         $config: header
       });
       this.QuestionPage = res.data.contents;
+            console.log("xixi");
+      console.log(res);
+      console.log("qqq");
+      console.log(getStore("QuestionPage"));
     }
   },
   mounted() {
@@ -381,7 +284,8 @@ export default {
   },
   components: {
     taskitem,
-    deliverypage
+    deliverypage,
+    questionpage
   }
 };
 </script>
