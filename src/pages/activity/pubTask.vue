@@ -119,7 +119,7 @@
                   <div class="row"></div>
                   <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
-                    <button class="ui small blue button" style="width:120px;">发布</button>
+                    <button class="ui small blue button" style="width:120px;" >发布</button>
                   </div>
                   <div class="one wide column"></div>
                 </div>

@@ -30,50 +30,7 @@
             </div>
             <div class="one wide column"></div>
 
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="one wide column"></div>
-                  <div class="three wide column">
-                    <div class="ui container">
-                      <div class="ui grid">
-                        <div class="row"></div>
-                        <img class="ui small image" src="../../../assets/log.jpg">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="nine wide column left aligned">
-                    <div class="ui grid">
-                      <div class="sixteen wide column">别人的问卷1</div>
-
-                      <div class="four wide column">问卷填写进度</div>
-                      <div class="ten wide column">
-                        <div class="ui progress">
-                          <div class="bar">
-                            <div class="progress"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="two wide column">0/1</div>
-
-                      <div class="sixteen wide column">任务截止时间: 2019-4-27 18:00</div>
-                    </div>
-                  </div>
-                  <div class="three wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui red padded grid">
-                        <div class="row"></div>
-                        <div class="row"></div>
-                        <button class="ui small blue button">查看任务</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
+     
 
             <div class="one wide column"></div>
             <div class="fourteen wide column">

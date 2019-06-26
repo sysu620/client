@@ -110,7 +110,7 @@
 
                   <div class="eleven wide column"></div>
                   <div class="four wide column left aligned">
-                    <button class="ui small blue button" style="width:120px;">取消任务</button>
+                    <button class="ui small blue button" style="width:120px;" @click="cancelTask">取消任务</button>
                   </div>
                   <div class="one wide column"></div>
                 </div>
@@ -129,10 +129,19 @@
 
 <script>
 import { getStore } from '../../../../config/mUtils';
+import { finishPublish } from '../../../../service/getData';
 export default {
   data () {
     return {
       person: getStore('userId'),
+
+    }
+  },
+  methods: {
+    async cancelTask(){
+      
+      await finishPublish()
+
 
     }
   }

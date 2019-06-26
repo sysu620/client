@@ -29,99 +29,14 @@
               </div>
             </div>
             <div class="one wide column"></div>
-
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="one wide column"></div>
-                  <div class="three wide column">
-                    <div class="ui container">
-                      <div class="ui grid">
-                        <div class="row"></div>
-                        <img class="ui small image" src="../../../assets/log.jpg">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="nine wide column left aligned">
-                    <div class="ui grid">
-                      <div class="sixteen wide column sty1 height1">我的问卷1</div>
-
-                      <div class="five wide column height1">问卷填写进度:</div>
-                      <div class="eight wide column height1">
-                        <div class="ui progress" data-value="50" data-total="200" id="progress1">
-                          <div class="bar">
-                            <div class="progress"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="three wide column height1">50/200</div>
-
-                      <div class="five wide column height1">任务截止时间:</div>
-                      <div class="eleven wide column height1">2019-4-27 18:00</div>
-                    </div>
-                  </div>
-                  <div class="three wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui red padded grid">
-                        <div class="row"></div>
-                        <div class="row"></div>
-                        <button class="ui small blue button">查看任务</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
-
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="one wide column"></div>
-                  <div class="three wide column">
-                    <div class="ui container">
-                      <div class="ui grid">
-                        <div class="row"></div>
-                        <img class="ui small image" src="../../../assets/log.jpg">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="nine wide column left aligned">
-                    <div class="ui grid">
-                      <div class="sixteen wide column height1 sty1">我的快递1</div>
-
-                      <div class="five wide column height1">快递领取进度:</div>
-                      <div class="eight wide column height1">
-                        <div class="ui progress" data-value="0" data-total="1" id="progress2">
-                          <div class="bar">
-                            <div class="progress"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="three wide column height1">0/1</div>
-
-                      <div class="five wide column height1">任务截止时间:</div>
-                      <div class="eleven wide column height1">2019-4-27 18:00</div>
-                    </div>
-                  </div>
-                  <div class="three wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui red padded grid">
-                        <div class="row"></div>
-                        <div class="row"></div>
-                        <button class="ui small blue button">查看任务</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
-
+            <pubitem
+              v-for="task in tasks"
+              v-bind:key="task.taskId"
+              v-bind:taskTitle="task.taskTitle"
+              v-bind:endTime="task.endTime"
+              v-bind:state="task.state"
+              v-bind:taskType="task.taskType"
+            ></pubitem>
             <div class="one wide column"></div>
             <div class="fourteen wide column">
               <div class="ui center aligned container black_border">
@@ -147,13 +62,41 @@
 
 <script>
 import { getStore } from '../../../config/mUtils';
+import { pubitem } from '../../../components/pubitem';
+import { qPublishPage } from '../../../service/getData';
+
 export default {
   data() {
     return {
-      person: getStore('userId')
+      person: getStore('userId'),
+      tasks: [],
+
     };
   },
-  mounted: {}
+
+  mounted() {
+    this.getTaskUserPub();
+  },
+
+  methods: {
+    async getTaskUserPub() {
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await qPublishPage ({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      console.log(res);
+      this.tasks = res.data.contents;
+      
+    }
+  },
+
+  components: {
+    pubitem,
+  }
+  
 };
 </script>
 
