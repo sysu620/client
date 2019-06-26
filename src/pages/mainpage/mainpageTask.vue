@@ -61,13 +61,12 @@
                 >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
-                  <taskitem 
+                <taskitem
                   v-for="task in tasks"
                   v-bind:key="task.taskId"
                   v-bind:taskTitle="task.taskTitle"
                   v-bind:endTime="task.endTime"
-                  >
-                  </taskitem>
+                ></taskitem>
 
                 <div class="row"></div>
                 <div class="row"></div>
@@ -119,14 +118,12 @@
                 <h3>填写问卷任务</h3>
                 <div class="ui grid">
                   <deliverypage
-                  v-for="question in QuestionPage"
-                  v-bind:key="question.taskId"
-                  v-bind:taskTitle="question.taskTitle"
-                  v-bind:endTime="question.endTime"
-                  v-bind:state="question.state"
-                  >
-
-                  </deliverypage>
+                    v-for="question in QuestionPage"
+                    v-bind:key="question.taskId"
+                    v-bind:taskTitle="question.taskTitle"
+                    v-bind:endTime="question.endTime"
+                    v-bind:state="question.state"
+                  ></deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -156,14 +153,12 @@
                 <h3>快递领取任务</h3>
                 <div class="ui grid">
                   <deliverypage
-                  v-for="delivery in DeliveryPage"
-                  v-bind:key="delivery.taskId"
-                  v-bind:taskTitle="delivery.taskTitle"
-                  v-bind:endTime="delivery.endTime"
-                  v-bind:state="delivery.state"
-                  >
-
-                  </deliverypage>
+                    v-for="delivery in DeliveryPage"
+                    v-bind:key="delivery.taskId"
+                    v-bind:taskTitle="delivery.taskTitle"
+                    v-bind:endTime="delivery.endTime"
+                    v-bind:state="delivery.state"
+                  ></deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -195,56 +190,64 @@
 
 <script>
 import { async } from "q";
-import { getStore } from '../../config/mUtils';
-import { qAcceptPage } from '../../service/getData';
+import { getStore } from "../../config/mUtils";
+import { qAcceptPage } from "../../service/getData";
 import taskitem from "../../components/task-item";
 import deliverypage from "../../components/deliverypage";
 import questionpage from "../../components/questionpage";
-import {queryPageD, queryPageQ } from "../../service/getData";
+import { queryPageD, queryPageQ } from "../../service/getData";
 
 export default {
   data() {
     return {
       searchText: "",
-      person: getStore('userId'),
+      person: getStore("userId"),
       tasks: [],
       DeliveryPage: [],
-      QuestionPage: [],
+      QuestionPage: []
     };
   },
   methods: {
     async getTaskUserPick() {
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await qAcceptPage({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await qAcceptPage({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
       this.tasks = res.data.contents;
       // console.log(this.tasks);
-
     },
     async gettaskDelivery() {
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await queryPageD({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
-      this.DeliveryPage = res.data.contents
-      console.log('haha')
-      console.log(res)
-      console.log('heihei')
-      console.log(getStore('DeliveryPage'))
-
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await queryPageD({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      this.DeliveryPage = res.data.contents;
+      console.log("haha");
+      console.log(res);
+      console.log("heihei");
+      console.log(getStore("DeliveryPage"));
     },
-    async gettaskQuestion(){
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await queryPageQ({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
-      this.QuestionPage = res.data.contents
-
+    async gettaskQuestion() {
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await queryPageQ({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      this.QuestionPage = res.data.contents;
     }
   },
-  mounted(){
+  mounted() {
     this.getTaskUserPick();
     this.gettaskDelivery();
     this.gettaskQuestion();
-
   },
   components: {
     taskitem,

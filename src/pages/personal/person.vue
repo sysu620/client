@@ -84,24 +84,26 @@
 </template>
 
 <script>
-import { getStore } from '../../config/mUtils';
-import { signOut } from '../../service/getData';
+import { getStore } from "../../config/mUtils";
+import { signOut } from "../../service/getData";
 export default {
-  data () {
+  data() {
     return {
-      studentId: getStore('userId'),
-      name: 'hbx123',
+      studentId: getStore("userId"),
+      name: "hbx123",
       age: 12,
-      sex: 'man',
-      grade : 12,
-      major: 'computer science',
-      person: getStore('userId')
-    }
+      sex: "man",
+      grade: 12,
+      major: "computer science",
+      person: getStore("userId")
+    };
   },
   methods: {
     async signout() {
-      await signOut().catch(e=>{console.log(e.response.data.error)});
-    } 
+      await signOut().catch(e => {
+        console.log(e.response.data.error);
+      });
+    }
   }
 };
 </script>

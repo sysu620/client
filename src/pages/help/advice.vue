@@ -1,6 +1,6 @@
 <template>
   <div class="semantic-component">
-    <div class="ui blue secondary  inverted menu">
+    <div class="ui blue secondary inverted menu">
       <div class="right menu">
         <a class="ui item" @click="$router.push({name: 'message', params:{person: person}})">
           <i class="large bell icon"></i>
@@ -16,50 +16,46 @@
         <div class="ui center aligned container">
           <i class="centered huge teal question circle outline icon"></i>
         </div>
-        <br />
-        <br />
-        <div class="ui  center aligned container">
-          <p class="f">感谢您对挣闲钱的支持</p> <br />
+        <br>
+        <br>
+        <div class="ui center aligned container">
+          <p class="f">感谢您对挣闲钱的支持</p>
+          <br>
           <i class="centered huge teal qrcode icon"></i>
-          <br />
-          <br />
-          <p class="f">添加微信，更快解决您的问题</p> <br />
-
+          <br>
+          <br>
+          <p class="f">添加微信，更快解决您的问题</p>
+          <br>
         </div>
-
       </div>
       <div class="three wide column"></div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-import { getStore } from '../../config/mUtils';
+import { getStore } from "../../config/mUtils";
 export default {
-  data () {
+  data() {
     return {
-      person: getStore('userId'),
-
-    }
+      person: getStore("userId")
+    };
   }
-}
+};
 </script>
 
 <style scoped>
-  .semantic-component {
-    background-color: #F2F6FC;
-  }
+.semantic-component {
+  background-color: #f2f6fc;
+}
 
-  .ton {
-    background-color: white;
-  }
+.ton {
+  background-color: white;
+}
 
-  .f {
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(102, 102, 255, 0.349019607843137);
-    font-size: 19px;
-  }
-
+.f {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(102, 102, 255, 0.349019607843137);
+  font-size: 19px;
+}
 </style>

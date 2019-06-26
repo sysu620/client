@@ -27,8 +27,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -46,8 +45,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -65,8 +63,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -84,8 +81,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -103,8 +99,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -122,8 +117,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -141,8 +135,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -160,8 +153,7 @@
               <br>
               <br>来自计算机专业的被帮助者：
               <br>
-              <br>
-谢谢小哥哥帮我
+              <br>谢谢小哥哥帮我
               拿快递！
               <br>
               <br>
@@ -176,15 +168,14 @@
 </template>
 
 <script>
-import { getStore } from '../../../config/mUtils';
+import { getStore } from "../../../config/mUtils";
 export default {
-  data () {
+  data() {
     return {
-      person: getStore('userId'),
-
-    }
+      person: getStore("userId")
+    };
   }
-}
+};
 </script>
 
 <style scoped>

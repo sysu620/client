@@ -162,15 +162,14 @@
 </template>
 
 <script>
-import { getStore } from '../../../config/mUtils';
+import { getStore } from "../../../config/mUtils";
 export default {
-  data () {
+  data() {
     return {
-      person: getStore('userId'),
-
-    }
+      person: getStore("userId")
+    };
   }
-}
+};
 </script>
 
 

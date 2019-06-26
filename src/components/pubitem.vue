@@ -44,17 +44,12 @@
 
 <script>
 export default {
-    data () {
-        return {
-            
-        }
-    },
-    methods: {
-
-    },
-    props: ["taskTitle", "state", "taskType", "endTime"]
-    
-}
+  data() {
+    return {};
+  },
+  methods: {},
+  props: ["taskTitle", "state", "taskType", "endTime"]
+};
 </script>
 
 <style scoped>

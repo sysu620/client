@@ -61,16 +61,15 @@
 </template>
 
 <script>
-import { getStore } from '../../../config/mUtils';
-import { pubitem } from '../../../components/pubitem';
-import { qPublishPage } from '../../../service/getData';
+import { getStore } from "../../../config/mUtils";
+import { pubitem } from "../../../components/pubitem";
+import { qPublishPage } from "../../../service/getData";
 
 export default {
   data() {
     return {
-      person: getStore('userId'),
-      tasks: [],
-
+      person: getStore("userId"),
+      tasks: []
     };
   },
 
@@ -82,21 +81,19 @@ export default {
     async getTaskUserPub() {
       let header = { headers: { "Content-Type": "application/json" } };
       console.log("start request");
-      let res = await qPublishPage ({
+      let res = await qPublishPage({
         page: 0,
         userId: parseInt(getStore("userId")),
         $config: header
       });
       console.log(res);
       this.tasks = res.data.contents;
-      
     }
   },
 
   components: {
-    pubitem,
+    pubitem
   }
-  
 };
 </script>
 

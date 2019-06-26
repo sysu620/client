@@ -58,9 +58,9 @@
 
 <script>
 import { async } from "q";
-import { getStore, setStore } from '../../config/mUtils'
-import { signIn, getUser } from "../../service/getData"
-import swal from "sweetalert"
+import { getStore, setStore } from "../../config/mUtils";
+import { signIn, getUser } from "../../service/getData";
+import swal from "sweetalert";
 
 export default {
   mounted() {
@@ -77,23 +77,23 @@ export default {
   methods: {
     async login() {
       let body = { userId: parseInt(this.account), password: this.password };
-      let header =  {headers: {"Content-Type": "application/json"}};
-      console.log('start request');
-      let res = await signIn({"body": body, "$config": header});
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await signIn({ body: body, $config: header });
       console.log(res.data.token);
-      setStore('userId', body.userId);
-      setStore('token', res.data.token);
-      let resinfo = await getUser({userId: parseInt(this.account)});
-      setStore('username', resinfo.data.username);
-      setStore('university', resinfo.data.university);
-      setStore('grade', resinfo.data.grade);
-      setStore('phone', resinfo.data.phone);
-      setStore('major', resinfo.data.major);
-      setStore('email', resinfo.data.email);
-      setStore('balance', resinfo.data.balance);
+      setStore("userId", body.userId);
+      setStore("token", res.data.token);
+      let resinfo = await getUser({ userId: parseInt(this.account) });
+      setStore("username", resinfo.data.username);
+      setStore("university", resinfo.data.university);
+      setStore("grade", resinfo.data.grade);
+      setStore("phone", resinfo.data.phone);
+      setStore("major", resinfo.data.major);
+      setStore("email", resinfo.data.email);
+      setStore("balance", resinfo.data.balance);
       this.$router.push({
         name: "mainpagePub",
-        params: { person: getStore('userId') }
+        params: { person: getStore("userId") }
       });
     }
   }

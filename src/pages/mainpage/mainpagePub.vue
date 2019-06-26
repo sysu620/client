@@ -118,14 +118,12 @@
                 <h3>填写问卷任务</h3>
                 <div class="ui grid">
                   <deliverypage
-                  v-for="question in QuestionPage"
-                  v-bind:key="question.taskId"
-                  v-bind:taskTitle="question.taskTitle"
-                  v-bind:endTime="question.endTime"
-                  v-bind:state="question.state"
-                  >
-
-                  </deliverypage>
+                    v-for="question in QuestionPage"
+                    v-bind:key="question.taskId"
+                    v-bind:taskTitle="question.taskTitle"
+                    v-bind:endTime="question.endTime"
+                    v-bind:state="question.state"
+                  ></deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -154,40 +152,13 @@
               <div class="ui container">
                 <h3>快递领取任务</h3>
                 <div class="ui grid">
-
                   <deliverypage
-                  v-for="delivery in DeliveryPage"
-                  v-bind:key="delivery.taskId"
-                  v-bind:taskTitle="delivery.taskTitle"
-                  v-bind:endTime="delivery.endTime"
-                  v-bind:state="delivery.state"
-                  >
-
-                  </deliverypage>
-
-  <!-- <div>
-    <div class="one wide column "></div>
-    <div class="fourteen wide column red">
-      <div class="ui center aligned container">
-        <div class="ui grid top_0">
-          <div class="one wide column "></div>
-          <div class="fourteen wide column ton black_border">
-            <div class="ui container">
-              <h5>{{taskTitle}}</h5>
-              <p>内容：{{taskTitle}}</p>
-              <p>状态： {{state}}</p>
-              <p>截至日期：{{endTime}}</p>
-            </div>
-          </div>
-          <div class="row"></div>
-        </div>
-      </div>
-    </div>
-    <div class="one wide column "></div>
-  </div>                  
-  <deliverypage></deliverypage>
-                  <deliverypage></deliverypage> -->
-                  <!-- <div class="one wide column "></div> -->
+                    v-for="delivery in DeliveryPage"
+                    v-bind:key="delivery.taskId"
+                    v-bind:taskTitle="delivery.taskTitle"
+                    v-bind:endTime="delivery.endTime"
+                    v-bind:state="delivery.state"
+                  ></deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -246,7 +217,6 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
-      
     },
     async gettaskDelivery() {
       let header = { headers: { "Content-Type": "application/json" } };
@@ -271,7 +241,7 @@ export default {
         $config: header
       });
       this.QuestionPage = res.data.contents;
-            console.log("xixi");
+      console.log("xixi");
       console.log(res);
       console.log("qqq");
       console.log(getStore("QuestionPage"));

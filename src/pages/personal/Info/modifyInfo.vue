@@ -87,17 +87,17 @@
 </template>
 
 <script>
-import { getStore } from '../../../config/mUtils';
+import { getStore } from "../../../config/mUtils";
 export default {
   mounted() {
     $(this.$el)
       .find(".ui.dropdown")
       .dropdown();
   },
-  data () {
+  data() {
     return {
-      person: getStore('userId')
-    }
+      person: getStore("userId")
+    };
   }
 };
 </script>

@@ -19,26 +19,7 @@
               <br>
               <br>进行中
               <br>
-              <br>
-提取2元到支付宝
-              <br>
-              <br>
-              <br>2019年4月30日
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="one wide column"></div>
-      <div class="three wide column">
-        <div class="three wide column">
-          <div class="ui segment f">
-            <div class="ui center aligned container">
-              <i class="huge close icon f"></i>
-              <br>
-              <br>进行中
-              <br>
-              <br>
-提取2元到支付宝
+              <br>提取2元到支付宝
               <br>
               <br>
               <br>2019年4月30日
@@ -55,26 +36,7 @@
               <br>
               <br>进行中
               <br>
-              <br>
-提取2元到支付宝
-              <br>
-              <br>
-              <br>2019年4月30日
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="one wide column"></div>
-      <div class="three wide column">
-        <div class="three wide column">
-          <div class="ui segment f">
-            <div class="ui center aligned container">
-              <i class="huge close icon f"></i>
-              <br>
-              <br>进行中
-              <br>
-              <br>
-提取2元到支付宝
+              <br>提取2元到支付宝
               <br>
               <br>
               <br>2019年4月30日
@@ -91,26 +53,7 @@
               <br>
               <br>进行中
               <br>
-              <br>
-提取2元到支付宝
-              <br>
-              <br>
-              <br>2019年4月30日
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="one wide column"></div>
-      <div class="three wide column">
-        <div class="three wide column">
-          <div class="ui segment f">
-            <div class="ui center aligned container">
-              <i class="huge close icon f"></i>
-              <br>
-              <br>进行中
-              <br>
-              <br>
-提取2元到支付宝
+              <br>提取2元到支付宝
               <br>
               <br>
               <br>2019年4月30日
@@ -127,8 +70,7 @@
               <br>
               <br>进行中
               <br>
-              <br>
-提取2元到支付宝
+              <br>提取2元到支付宝
               <br>
               <br>
               <br>2019年4月30日
@@ -145,8 +87,58 @@
               <br>
               <br>进行中
               <br>
+              <br>提取2元到支付宝
               <br>
-提取2元到支付宝
+              <br>
+              <br>2019年4月30日
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="one wide column"></div>
+      <div class="three wide column">
+        <div class="three wide column">
+          <div class="ui segment f">
+            <div class="ui center aligned container">
+              <i class="huge close icon f"></i>
+              <br>
+              <br>进行中
+              <br>
+              <br>提取2元到支付宝
+              <br>
+              <br>
+              <br>2019年4月30日
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="one wide column"></div>
+      <div class="three wide column">
+        <div class="three wide column">
+          <div class="ui segment f">
+            <div class="ui center aligned container">
+              <i class="huge close icon f"></i>
+              <br>
+              <br>进行中
+              <br>
+              <br>提取2元到支付宝
+              <br>
+              <br>
+              <br>2019年4月30日
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="one wide column"></div>
+      <div class="three wide column">
+        <div class="three wide column">
+          <div class="ui segment f">
+            <div class="ui center aligned container">
+              <i class="huge close icon f"></i>
+              <br>
+              <br>进行中
+              <br>
+              <br>提取2元到支付宝
               <br>
               <br>
               <br>2019年4月30日
@@ -160,15 +152,14 @@
 </template>
 
 <script>
-import { getStore } from '../../../config/mUtils';
+import { getStore } from "../../../config/mUtils";
 export default {
-  data () {
+  data() {
     return {
-      person: getStore('userId'),
-
-    }
+      person: getStore("userId")
+    };
   }
-}
+};
 </script>
 
 <style scoped>
