@@ -61,21 +61,13 @@
                 >我的发布</router-link>
               </div>
               <div class="ui center aligned container">
-                <div class="ui grid mline">
-                  <div class="one wide column"></div>
-                  <div class="seven wide column left aligned">我发布的快递1</div>
-                  <div class="seven wide column right aligned">发布时间：2019-4-27 18:00</div>
-                  <div class="one wide column"></div>
-                </div>
-                <div class="ui divider"></div>
-
-                <div class="ui grid mline">
-                  <div class="one wide column"></div>
-                  <div class="seven wide column left aligned">我发布的问卷1</div>
-                  <div class="seven wide column right aligned">发布时间：2019-4-27 18:00</div>
-                  <div class="one wide column"></div>
-                </div>
-                <div class="ui divider"></div>
+                  <taskitem 
+                  v-for="task in tasks"
+                  v-bind:key="task.taskId"
+                  v-bind:taskTitle="task.taskTitle"
+                  v-bind:endTime="task.endTime"
+                  >
+                  </taskitem>
 
                 <div class="row"></div>
                 <div class="row"></div>
@@ -411,16 +403,34 @@
 <script>
 import { async } from "q";
 import { getStore } from '../../config/mUtils';
+import { qAcceptPage } from '../../service/getData';
+import taskitem from "../../components/task-item";
 
 export default {
   data() {
     return {
       searchText: "",
-      person: getStore('userId')
+      person: getStore('userId'),
+      tasks: []
     };
   },
+  methods: {
+    async getTaskUserPick() {
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await qAcceptPage({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      this.tasks = res.data.contents;
+      console.log(tasks);
 
-  methods: {}
+    }
+  },
+  mounted(){
+    this.getTaskUserPick();
+    
+  },
+  components: {
+    taskitem
+  }
 };
 </script>
 

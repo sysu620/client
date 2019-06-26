@@ -1,7 +1,7 @@
 /* eslint-disable */
 import axios from 'axios'
 import qs from 'qs'
-let domain = ''
+let domain = '/api'
 export const getDomain = () => {
   return domain
 }
@@ -40,7 +40,7 @@ export const request = (method, url, body, queryParameters, form, config) => {
 export const publishQTask = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/publishQuery'
+  let path = '/user/questionare'
   let body
   let queryParameters = {}
   let form = {}
@@ -58,7 +58,7 @@ export const publishQTask = function(parameters = {}) {
   return request('post', domain + path, body, queryParameters, form, config)
 }
 export const publishQTask_RAW_URL = function() {
-  return '/user/publishQuery'
+  return '/user/questionare'
 }
 export const publishQTask_TYPE = function() {
   return 'post'
@@ -66,7 +66,7 @@ export const publishQTask_TYPE = function() {
 export const publishQTaskURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/publishQuery'
+  let path = '/user/questionare'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
@@ -86,7 +86,7 @@ export const publishQTaskURL = function(parameters = {}) {
 export const publishDTask = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/publishDelivery'
+  let path = '/user/delivery'
   let body
   let queryParameters = {}
   let form = {}
@@ -104,7 +104,7 @@ export const publishDTask = function(parameters = {}) {
   return request('post', domain + path, body, queryParameters, form, config)
 }
 export const publishDTask_RAW_URL = function() {
-  return '/user/publishDelivery'
+  return '/user/delivery'
 }
 export const publishDTask_TYPE = function() {
   return 'post'
@@ -112,7 +112,7 @@ export const publishDTask_TYPE = function() {
 export const publishDTaskURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/publishDelivery'
+  let path = '/user/delivery'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
@@ -132,7 +132,7 @@ export const publishDTaskURL = function(parameters = {}) {
 export const acceptTask = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/accept'
+  let path = '/user/task'
   let body
   let queryParameters = {}
   let form = {}
@@ -150,7 +150,7 @@ export const acceptTask = function(parameters = {}) {
   return request('post', domain + path, body, queryParameters, form, config)
 }
 export const acceptTask_RAW_URL = function() {
-  return '/user/accept'
+  return '/user/task'
 }
 export const acceptTask_TYPE = function() {
   return 'post'
@@ -158,7 +158,7 @@ export const acceptTask_TYPE = function() {
 export const acceptTaskURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/accept'
+  let path = '/user/task'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
@@ -179,7 +179,7 @@ export const acceptTaskURL = function(parameters = {}) {
 export const qAcceptPage = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/task/qAcceptPage'
+  let path = '/task/accept'
   let body
   let queryParameters = {}
   let form = {}
@@ -203,7 +203,7 @@ export const qAcceptPage = function(parameters = {}) {
   return request('get', domain + path, body, queryParameters, form, config)
 }
 export const qAcceptPage_RAW_URL = function() {
-  return '/task/qAcceptPage'
+  return '/task/accept'
 }
 export const qAcceptPage_TYPE = function() {
   return 'get'
@@ -211,7 +211,7 @@ export const qAcceptPage_TYPE = function() {
 export const qAcceptPageURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/task/qAcceptPage'
+  let path = '/task/accept'
   if (parameters['page'] !== undefined) {
     queryParameters['page'] = parameters['page']
   }
@@ -238,7 +238,7 @@ export const qAcceptPageURL = function(parameters = {}) {
 export const qPublishPage = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/task/qPublishPage'
+  let path = '/task/publish'
   let body
   let queryParameters = {}
   let form = {}
@@ -262,7 +262,7 @@ export const qPublishPage = function(parameters = {}) {
   return request('get', domain + path, body, queryParameters, form, config)
 }
 export const qPublishPage_RAW_URL = function() {
-  return '/task/qPublishPage'
+  return '/task/publish'
 }
 export const qPublishPage_TYPE = function() {
   return 'get'
@@ -270,7 +270,7 @@ export const qPublishPage_TYPE = function() {
 export const qPublishPageURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/task/qPublishPage'
+  let path = '/task/publish'
   if (parameters['page'] !== undefined) {
     queryParameters['page'] = parameters['page']
   }
@@ -297,7 +297,7 @@ export const qPublishPageURL = function(parameters = {}) {
 export const queryPageQ = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/task/queryPageQ'
+  let path = '/task/questionares'
   let body
   let queryParameters = {}
   let form = {}
@@ -321,7 +321,7 @@ export const queryPageQ = function(parameters = {}) {
   return request('get', domain + path, body, queryParameters, form, config)
 }
 export const queryPageQ_RAW_URL = function() {
-  return '/task/queryPageQ'
+  return '/task/questionares'
 }
 export const queryPageQ_TYPE = function() {
   return 'get'
@@ -329,7 +329,7 @@ export const queryPageQ_TYPE = function() {
 export const queryPageQURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/task/queryPageQ'
+  let path = '/task/questionares'
   if (parameters['page'] !== undefined) {
     queryParameters['page'] = parameters['page']
   }
@@ -356,7 +356,7 @@ export const queryPageQURL = function(parameters = {}) {
 export const queryPageD = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/task/queryPageD'
+  let path = '/task/deliverys'
   let body
   let queryParameters = {}
   let form = {}
@@ -380,7 +380,7 @@ export const queryPageD = function(parameters = {}) {
   return request('get', domain + path, body, queryParameters, form, config)
 }
 export const queryPageD_RAW_URL = function() {
-  return '/task/queryPageD'
+  return '/task/deliverys'
 }
 export const queryPageD_TYPE = function() {
   return 'get'
@@ -388,7 +388,7 @@ export const queryPageD_TYPE = function() {
 export const queryPageDURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/task/queryPageD'
+  let path = '/task/deliverys'
   if (parameters['page'] !== undefined) {
     queryParameters['page'] = parameters['page']
   }
@@ -415,7 +415,7 @@ export const queryPageDURL = function(parameters = {}) {
 export const queryTitle = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/task/queryTitle'
+  let path = '/task/title'
   let body
   let queryParameters = {}
   let form = {}
@@ -439,7 +439,7 @@ export const queryTitle = function(parameters = {}) {
   return request('get', domain + path, body, queryParameters, form, config)
 }
 export const queryTitle_RAW_URL = function() {
-  return '/task/queryTitle'
+  return '/task/title'
 }
 export const queryTitle_TYPE = function() {
   return 'get'
@@ -447,7 +447,7 @@ export const queryTitle_TYPE = function() {
 export const queryTitleURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/task/queryTitle'
+  let path = '/task/title'
   if (parameters['title'] !== undefined) {
     queryParameters['title'] = parameters['title']
   }
@@ -608,7 +608,7 @@ export const getAnswerURL = function(parameters = {}) {
 export const fillQuery = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/fillQuestionare'
+  let path = '/user/answer'
   let body
   let queryParameters = {}
   let form = {}
@@ -626,7 +626,7 @@ export const fillQuery = function(parameters = {}) {
   return request('post', domain + path, body, queryParameters, form, config)
 }
 export const fillQuery_RAW_URL = function() {
-  return '/user/fillQuestionare'
+  return '/user/answer'
 }
 export const fillQuery_TYPE = function() {
   return 'post'
@@ -634,7 +634,7 @@ export const fillQuery_TYPE = function() {
 export const fillQueryURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/fillQuestionare'
+  let path = '/user/answer'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
@@ -654,7 +654,7 @@ export const fillQueryURL = function(parameters = {}) {
 export const finishAccept = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/finishAccept'
+  let path = '/user/accept'
   let body
   let queryParameters = {}
   let form = {}
@@ -672,7 +672,7 @@ export const finishAccept = function(parameters = {}) {
   return request('put', domain + path, body, queryParameters, form, config)
 }
 export const finishAccept_RAW_URL = function() {
-  return '/user/finishAccept'
+  return '/user/accept'
 }
 export const finishAccept_TYPE = function() {
   return 'put'
@@ -680,7 +680,7 @@ export const finishAccept_TYPE = function() {
 export const finishAcceptURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/finishAccept'
+  let path = '/user/accept'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]
@@ -700,7 +700,7 @@ export const finishAcceptURL = function(parameters = {}) {
 export const finishPublish = function(parameters = {}) {
   const domain = parameters.$domain ? parameters.$domain : getDomain()
   const config = parameters.$config
-  let path = '/user/finishPublish'
+  let path = '/user/publish'
   let body
   let queryParameters = {}
   let form = {}
@@ -718,7 +718,7 @@ export const finishPublish = function(parameters = {}) {
   return request('put', domain + path, body, queryParameters, form, config)
 }
 export const finishPublish_RAW_URL = function() {
-  return '/user/finishPublish'
+  return '/user/publish'
 }
 export const finishPublish_TYPE = function() {
   return 'put'
@@ -726,7 +726,7 @@ export const finishPublish_TYPE = function() {
 export const finishPublishURL = function(parameters = {}) {
   let queryParameters = {}
   const domain = parameters.$domain ? parameters.$domain : getDomain()
-  let path = '/user/finishPublish'
+  let path = '/user/publish'
   if (parameters.$queryParameters) {
     Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
       queryParameters[parameterName] = parameters.$queryParameters[parameterName]

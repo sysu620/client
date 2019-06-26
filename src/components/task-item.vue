@@ -3,7 +3,7 @@
     <div class="ui grid mline">
       <div class="one wide column"></div>
       <div class="seven wide column left aligned">{{taskTitle}}</div>
-      <div class="seven wide column right aligned">结束时间：{{endtime}}</div>
+      <div class="seven wide column right aligned">结束时间：{{endTime}}</div>
       <div class="one wide column"></div>
     </div>
     <div class="ui divider"></div>

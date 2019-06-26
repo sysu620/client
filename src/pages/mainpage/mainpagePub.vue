@@ -259,119 +259,15 @@
               <div class="ui container">
                 <h3>快递领取任务</h3>
                 <div class="ui grid">
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
+                  <deliverypage
+                  v-for="delivery in DeliveryPage"
+                  v-bind:key="delivery.taskId"
+                  v-bind:taskTitle="delivery.taskTitle"
+                  v-bind:endTime="delivery.endTime"
+                  v-bind:state="delivery.state"
+                  >
 
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截止日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
-                  <div class="four wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui grid top_0">
-                        <div class="one wide column"></div>
-                        <div class="fourteen wide column ton black_border">
-                          <div class="ui container">
-                            <h5>别人的快递</h5>
-                            <p>领取地点：慎思园6号</p>
-                            <p>交付地点:：教学楼</p>
-                            <p>截至日期：2019年5月26日</p>
-                          </div>
-                        </div>
-                        <div class="one wide column"></div>
-                        <div class="row"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one wide column"></div>
+                  </deliverypage>
                 </div>
 
                 <div class="ui grid">
@@ -405,30 +301,51 @@
 import { async } from "q";
 import { getStore, setStore } from "../../config/mUtils";
 import taskitem from "../../components/task-item";
-import { qPublishPage } from '../../service/getData';
+import deliverypage from "../../components/deliverypage";
+import { qPublishPage, queryPageD, queryPageQ } from '../../service/getData';
 
 export default {
   data() {
     return {
       searchText: "",
       person: getStore('userId'),
-      tasks: []
+      tasks: getStore('taskUserPub'),
+      DeliveryPage:getStore('DeliveryPage'),
+      QuestionPage:getStore('QuestionPage'),
 
     };
   },
   methods: {
     async getTaskUserPub() {
-      let body = {page: 0, userId: parseInt(getStore('userId'))};
       let header =  {headers: {"Content-Type": "application/json"}};
       console.log('start request');
-      let res = await qPublishPage({"body": body, "$config": header});
-      this.tasks = res.data.contents;
-      console.log(tasks);
+      let res = await qPublishPage({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      setStore('tasksUserPub', res.data.contents)
+
+    },
+    async gettaskDelivery() {
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await queryPageD({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      setStore('DeliveryPage', res.data.contents)
+
+    },
+    async gettaskQuestion(){
+      let header =  {headers: {"Content-Type": "application/json"}};
+      console.log('start request');
+      let res = await queryPageQ({"page": 0, "userId": parseInt(getStore('userId')), "$config": header});
+      setStore('QuestionPage', res.data.contents)
 
     }
   },
   mounted(){
     this.getTaskUserPub();
+    this.gettaskDelivery();
+    this.gettaskQuestion();
+  },
+  components: {
+    taskitem,
+    deliverypage
   }
 };
 </script>
