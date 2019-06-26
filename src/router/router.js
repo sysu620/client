@@ -57,6 +57,8 @@ const taskDetail = r => require.ensure([], () => r(require("../pages/task/taskDe
 const filterDelivery = r => require.ensure([], () => r(require("../pages/task/filterDelivery")), "filterDelivery");
 const filterQuestion = r => require.ensure([], () => r(require("../pages/task/filterQuestion")), "filterQuestion");
 
+const qsedit = r => require.ensure([], () => r(require("../pages/task/qsedit")), "qsedit");
+const qsfill = r => require.ensure([], () => r(require("../pages/task/qsfill")), "qsfill");
 export default new Router({
   routes: [
     {
@@ -200,6 +202,16 @@ export default new Router({
           path: "/task/filterQuestion",
           component: filterQuestion,
           name: "filterQuestion"
+        },
+        {
+          path: "/user/questionare",
+          component: qsedit,
+          name: "qsedit"
+        },
+        {
+          path: "/task/questionare/:num",
+          component: qsfill,
+          name: "qsfill"
         }
       ]
     }

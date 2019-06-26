@@ -32,6 +32,7 @@
             <pubitem
               v-for="task in tasks"
               v-bind:key="task.taskId"
+              v-bind:taskId="task.taskId"
               v-bind:taskTitle="task.taskTitle"
               v-bind:endTime="task.endTime"
               v-bind:state="task.state"
@@ -62,7 +63,7 @@
 
 <script>
 import { getStore } from "../../../config/mUtils";
-import { pubitem } from "../../../components/pubitem";
+import  pubitem  from "../../../components/pubitem";
 import { qPublishPage } from "../../../service/getData";
 
 export default {

@@ -29,7 +29,7 @@
               <div class="ui red padded grid">
                 <div class="row"></div>
                 <div class="row"></div>
-                <button class="ui small blue button">查看任务</button>
+                <button class="ui small blue button" @click="getTaskDetail">查看任务</button>
               </div>
             </div>
           </div>
@@ -45,10 +45,18 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+    };
   },
-  methods: {},
-  props: ["taskTitle", "state", "taskType", "endTime"]
+  methods: {
+    getTaskDetail() {
+      console.log(this.taskId)
+      if(this.taskType == "questionare") {
+        this.$router.push({name:'qsfill', params:{num: this.taskId}})
+      }
+    }
+  },
+  props: ["taskTitle", "state", "taskType", "endTime", "taskId"]
 };
 </script>
 
