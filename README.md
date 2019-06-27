@@ -89,7 +89,7 @@ npm run build --report
 ## 总结
 1. 开发过程实际上并无使用许多vuex功能，由于vuex主要用于页面中组件的消息传递，数据存储在内存当中，每次刷新页面就会消失，而本项目中绝大多数都是单页面组件，对于数据存储等主要采用local storage。但vue因其轻量级的框架在中小型项目中表现亮眼，在大型单页面应用中因为vuex的存在，表现依然出色，在处理复杂交互逻辑的时候，vuex的存在是不可或缺的。所以说利用 vue + vuex 完全可以去做大型的单页面项目。
 2. 环境配置过程中，gulp必须使用`3.9`版本，否则无法进行与semantic 适配
-3. 感谢[@RalphWithoutMissFun](https://github.com/RalphWithoutMissFun) ，[@Skywalker](https://github.com/skywalker00001)提供semantic页面编写； 感谢[@GostBop](https://github.com/GostBop)提供后端开发支持；感谢两位PM妹子[@9ayhub](https://github.com/9ayhub)， [@NikkariAoe](https://github.com/NikkariAoe)编写大量文档与控制项目进度
+3. 感谢[@RalphWithoutMissFun](https://github.com/RalphWithoutMissFun) ，[@Skywalker](https://github.com/skywalker00001)提供semantic页面编写； 感谢[@GostBop](https://github.com/GostBop)提供后端开发支持与问卷系统；感谢两位PM妹子[@9ayhub](https://github.com/9ayhub)， [@NikkariAoe](https://github.com/NikkariAoe)编写大量文档与控制项目进度
 
 ## 部分截图
 ### 登陆
