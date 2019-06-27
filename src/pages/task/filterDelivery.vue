@@ -71,7 +71,7 @@
             <div class="eight wide column"></div>
             <div class="six wide column right aligned">
               <div class="ui blue six item menu">
-                <a class="item"></a>
+                <a class="item">&lt;</a>
                 <a class="active item">1</a>
                 <a class="item">2</a>
                 <a class="disabled item">...</a>
