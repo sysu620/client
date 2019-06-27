@@ -190,8 +190,9 @@ export default new Router({
           name: "allTask"
         },
         {
-          path: "/task/taskDetail",
-          component: taskDetail
+          path: "/task/:taskId/taskDetail",
+          component: taskDetail,
+          name: "taskDetail"
         },
         {
           path: "/task/filterDelivery",

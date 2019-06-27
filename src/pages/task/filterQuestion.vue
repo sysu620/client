@@ -90,7 +90,7 @@
 </template>
 <script>
 import { getStore } from "../../config/mUtils";
-import  pubitem  from "../../components/pubitem2";
+import  pubitem  from "../../components/questiontaskitem";
 import { queryPageQ } from "../../service/getData";
 
 export default {
@@ -116,9 +116,9 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
-      while(this.tasks.length < 10) {
+      for(var i = this.tasks.length; i < 10; i++) {
         this.tasks.push({
-          taskId: 0,
+          taskId: i+1,
           taskTitle: "",
           taskType: "",
           endTime: "",
