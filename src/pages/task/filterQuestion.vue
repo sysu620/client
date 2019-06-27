@@ -2,6 +2,9 @@
   <div class="semantic-component">
     <div class="ui blue secondary inverted menu">
       <div class="right menu">
+        <a class="ui item" @click="$router.push({name: 'mainpageTask', params:{person: person}})">
+          <i class="large home icon"></i>
+        </a >
         <a class="ui item">
           <i class="large bell icon"></i>
         </a>
@@ -17,7 +20,7 @@
           <div class="ui red padded grid">
             <div class="one wide column"></div>
             <div class="two wide column left aligned">
-              <router-link :to="{name: 'mainpageTask'}" class="ui mini button">返回主页</router-link>
+              <router-link :to="{name: 'mainpageTask', params: { person: person }}" class="ui mini button">返回主页</router-link>
             </div>
             <div class="two wide column left aligned">
               <router-link :to="{name: 'filterQuestion'}" class="ui mini button">问卷任务</router-link>
