@@ -72,7 +72,7 @@ export default {
       let header = { headers: { "Content-Type": "application/json" } };
       console.log("start request");
       let res = await qPublishPage({
-        page: 1,
+        page: 0,
         userId: parseInt(getStore("userId")),
         $config: header
       });

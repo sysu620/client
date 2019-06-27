@@ -27,6 +27,9 @@
           </div>
         </div>
       </template>
+      <footer>
+        <button @click="submit" class="submit">终止问卷</button>
+      </footer>
     </div>
     <div class="error" v-if="isError">
       404 Not Found
@@ -39,7 +42,8 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/toolbox'
-import { getQuestionare, getAnswer } from "../../service/getData";
+import { getQuestionare, getAnswer, finishPublish } from "../../service/getData";
+import { getStore, setStore } from "../../config/mUtils";
 /**
  * A module that define qs-data router view
  * @exports qs-data
@@ -49,6 +53,7 @@ import { getQuestionare, getAnswer } from "../../service/getData";
     name: 'qsData',
     data() {
       return {
+        buttonState: '',
         title: '',
         qsList: {},
         isError: false,
@@ -127,6 +132,23 @@ import { getQuestionare, getAnswer } from "../../service/getData";
           }
         } )
       },
+
+      async submit() {
+            let header = { headers: { 
+              "Content-Type": "application/json",
+              "Authorization": getStore("token")} };
+            console.log("start request");
+            let taskId = {taskId: this.$route.params.num}
+            let res2 = await finishPublish({
+              body: taskId,
+              $config: header
+            });
+            console.log(res2.data)
+            setTimeout(() => {
+              this.$router.push({ name: "mainpagePub"})
+            }, 1500)
+      },
+
       renderEChart(chartNum, chartData) {
         let myChart = echarts.init(document.getElementById(`chart-${chartNum}`))
         let option = {
@@ -186,6 +208,31 @@ import { getQuestionare, getAnswer } from "../../service/getData";
 <style lang="scss" scoped>
 $orange: #ee7419;
 $lightorange: #fcf0e5;
+
+
+  footer {
+    height: 6rem;
+    margin-top: 3rem;
+    text-align: center;
+    line-height: 6rem;
+    .submit {
+      width: 10rem;
+      height: 3rem;
+      padding: {
+        top: .3rem;
+        bottom: .3rem;
+      }
+      line-height: 100%;
+      color: #fff;
+      border: .1rem solid $orange;
+      border-radius: .2rem;
+      background-color: $orange;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 0 5px $orange;
+      }
+    }
+  }
 .data-container {
   width: 100%;
   padding: 5rem;

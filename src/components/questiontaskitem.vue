@@ -1,11 +1,12 @@
 <template>
   <div class="sixteen wide column mildblue">
     <div class="ui grid">
-      <div class="six wide column left aligned">
+      <div class="six wide column left aligned" v-if="stateFlag">
 
 
-        <router-link :to="{name: 'qsfill', params: { num: this.taskId }}" >{{taskTitle}}</router-link>
+        <router-link :to="{name: 'qsfill', params: { num: this.taskId, state: 0 }}">{{taskTitle}}</router-link>
       </div>
+      <div class="six wide column left aligned" v-else>{{taskTitle}}</div>
       <div class="three wide column left aligned">{{taskType}}</div>
       <div class="three wide column left aligned">{{state}}</div>
       <div class="four wide column left aligned">{{endTime}}</div>
@@ -17,13 +18,26 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      stateFlag: true
+    };
+  },
+  mounted() {
+    this.getState()
   },
   methods: {
     getTaskDetail() {
       console.log(this.taskId);
       if (this.taskType == "questionare") {
         this.$router.push({ name: "qsfill", params: { num: this.taskId } });
+      }
+      
+    },
+    getState() {
+      console.log(this.stateFlag)
+      if(this.state == "已完成") {
+        console.log(this.stateFlag)
+        this.stateFlag = false
       }
     }
   },
