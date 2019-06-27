@@ -23,10 +23,10 @@
               <router-link :to="{name: 'mainpageTask', params: { person: person }}" class="ui mini button">返回主页</router-link>
             </div>
             <div class="two wide column left aligned">
-              <router-link :to="{name: 'filterQuestion'}" class="ui mini button">问卷任务</router-link>
+              <router-link :to="{name: 'filterQuestion'}" class="ui mini blue button">问卷任务</router-link>
             </div>
             <div class="two wide column left aligned">
-              <router-link :to="{name: 'filterDelivery'}" class="ui mini blue button">快递任务</router-link>
+              <router-link :to="{name: 'filterDelivery'}" class="ui mini button">快递任务</router-link>
             </div>
             <div class="eight wide column right aligned">
               <div class="ui category search">
@@ -71,7 +71,7 @@
             <div class="eight wide column"></div>
             <div class="six wide column right aligned">
               <div class="ui blue six item menu">
-                <a class="item"></a>
+                <a class="item">&lt;</a>
                 <a class="active item">1</a>
                 <a class="item">2</a>
                 <a class="disabled item">...</a>
@@ -90,7 +90,7 @@
 </template>
 <script>
 import { getStore } from "../../config/mUtils";
-import  pubitem  from "../../components/pubitem2";
+import  pubitem  from "../../components/questiontaskitem";
 import { queryPageQ } from "../../service/getData";
 
 export default {
@@ -116,17 +116,17 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
-      while(this.tasks.length < 10) {
+      for(var i = this.tasks.length; i < 10; i++) {
         this.tasks.push({
-          taskId: 0,
+          taskId: i+1,
           taskTitle: "",
           taskType: "",
           endTime: "",
-          state: ""
+          state: "",
 
         })
-        }
-        console.log(this.tasks)
+      }
+      console.log(this.tasks)
     }
   },
 

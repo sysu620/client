@@ -71,7 +71,7 @@
             <div class="eight wide column"></div>
             <div class="six wide column right aligned">
               <div class="ui blue six item menu">
-                <a class="item"></a>
+                <a class="item">&lt;</a>
                 <a class="active item">1</a>
                 <a class="item">2</a>
                 <a class="disabled item">...</a>
@@ -90,7 +90,7 @@
 </template>
 <script>
 import { getStore } from "../../config/mUtils";
-import  pubitem  from "../../components/pubitem2";
+import  pubitem  from "../../components/deliverytaskitem";
 import { queryPageD } from "../../service/getData";
 
 export default {
@@ -116,9 +116,9 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
-      while(this.tasks.length < 10) {
+      for(var i = this.tasks.length; i < 10; i++) {
         this.tasks.push({
-          taskId: 0,
+          taskId: i+1,
           taskTitle: "",
           taskType: "",
           endTime: "",
