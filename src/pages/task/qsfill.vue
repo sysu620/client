@@ -52,7 +52,7 @@
         </div>
       </transition>  
       <footer>
-        <button @click="submit" class="submit">提交</button>
+        <button @click="submit" class="submit">{{buttonState}}</button>
       </footer>
     </div>
     <div class="error" v-else>
@@ -62,7 +62,9 @@
 </template>
 
 <script>
-import { getQuestionare } from "../../service/getData";
+import { getQuestionare, acceptTask, finishAccept } from "../../service/getData";
+
+import { getStore, setStore } from "../../config/mUtils";
 /**
  * A module that define qs-fill router view
  * @exports qs-fill
@@ -72,6 +74,7 @@ import { getQuestionare } from "../../service/getData";
     name: 'qsFill',
     data() {
       return {
+        buttonState: '',
         qsList: {
             task: {taskTitle: ""}
         },
@@ -87,6 +90,11 @@ import { getQuestionare } from "../../service/getData";
     },
     methods: {
       async fetchData() {
+        if(this.$route.params.state == '0') {
+          this.buttonState = '领取任务'
+        } else if(this.$route.params.state == '1') {
+          this.buttonState = '提交'
+        }
         let header = { headers: { "Content-Type": "application/json" } };
         console.log("start request");
         let res = await getQuestionare({
@@ -118,8 +126,38 @@ import { getQuestionare } from "../../service/getData";
 
         return item.isNeed ? `${msg} *` : msg
       },
-      submit() {
-        if (this.qsList.task.state === 'inissue') {
+      async submit() {
+        if(this.$route.params.state == '0') {
+          let header = { headers: { 
+            "Content-Type": "application/json",
+            "Authorization": getStore("token")} };
+          console.log("start request");
+          let taskId = {taskId: this.$route.params.num}
+          let res = await acceptTask({
+            body: taskId,
+            $config: header
+          });
+          console.log(res.data)
+          setTimeout(() => {
+             this.$router.push({ name: "mainpagePub"})
+            }, 1500)
+        } else if(this.$route.params.state == '1') {
+          let header = { headers: { 
+            "Content-Type": "application/json",
+            "Authorization": getStore("token")} };
+          console.log("start request");
+          let taskId = {taskId: this.$route.params.num}
+          let res = await finishAccept({
+            body: taskId,
+            $config: header
+          });
+          console.log(res.data)
+          setTimeout(() => {
+             this.$router.push({ name: "mainpagePub"})
+            }, 1500)
+        }
+
+        /*if (this.qsList.task.state === 'inissue') {
           let result = this.validate()
           if (result) {
             this.showDialog = true
@@ -140,7 +178,7 @@ import { getQuestionare } from "../../service/getData";
           this.showDialog = true
           this.submitError = true
           this.info = '提交失败！ 只有发布中的问卷才能提交'
-        }
+        }*/
       },
       validate() {
         for (let i in this.requiredItem) {

@@ -31,7 +31,7 @@
                   <div class="ui red padded grid">
                     <div class="row"></div>
                     <div class="row"></div>
-                    <button class="ui small blue button" @click="getTaskDetail">查看任务</button>
+                    <button class="ui small blue button" @click="stateFlag && getTaskDetail()">查看任务</button>
                   </div>
                 </div>
               </div>
@@ -48,13 +48,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      stateFlag: true
+    };
   },
   methods: {
     getTaskDetail() {
       console.log(this.taskId);
       if (this.taskType == "questionare") {
-        this.$router.push({ name: "qsfill", params: { num: this.taskId } });
+        console.log(this.state)
+        if(this.state == "已接取") {
+          this.$router.push({ name: "qsfill", params: { num: this.taskId , state: 1} });
+        } else if(this.state == "已完成") {
+          this.stateFlag = false
+        }
       }
     }
   },

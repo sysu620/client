@@ -209,7 +209,7 @@ export default new Router({
           name: "qsedit"
         },
         {
-          path: "/task/questionare/:num",
+          path: "/task/questionare/:num/:state",
           component: qsfill,
           name: "qsfill"
         }

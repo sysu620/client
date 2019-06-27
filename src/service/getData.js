@@ -205,6 +205,78 @@ export const acceptTaskURL = function(parameters = {}) {
   );
 };
 /**
+ * query a page of tasks accepted(获取一页用户接受的任务2)
+ * request: qAcceptPage2
+ * url: qAcceptPage2URL
+ * method: qAcceptPage2_TYPE
+ * raw_url: qAcceptPage2_RAW_URL
+ * @param page - if page is greater than 0, response a page of tasks(10), if page is 0, response 3 front tasks(如果page参数为0，则返回3个任务，供导航页使用；如果page大于0，则按页数返回10个任务)
+ * @param userId - the id of user
+ */
+export const qAcceptPage2 = function(parameters = {}) {
+  const domain = parameters.$domain ? parameters.$domain : getDomain();
+  const config = parameters.$config;
+  let path = "/task/accept2";
+  let body;
+  let queryParameters = {};
+  let form = {};
+  if (parameters["page"] !== undefined) {
+    queryParameters["page"] = parameters["page"];
+  }
+  if (parameters["page"] === undefined) {
+    return Promise.reject(new Error("Missing required  parameter: page"));
+  }
+  if (parameters["userId"] !== undefined) {
+    queryParameters["userId"] = parameters["userId"];
+  }
+  if (parameters["userId"] === undefined) {
+    return Promise.reject(new Error("Missing required  parameter: userId"));
+  }
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] =
+        parameters.$queryParameters[parameterName];
+    });
+  }
+  return request("get", domain + path, body, queryParameters, form, config);
+};
+export const qAcceptPage2_RAW_URL = function() {
+  return "/task/accept2";
+};
+export const qAcceptPage2_TYPE = function() {
+  return "get";
+};
+export const qAcceptPage2URL = function(parameters = {}) {
+  let queryParameters = {};
+  const domain = parameters.$domain ? parameters.$domain : getDomain();
+  let path = "/task/accept2";
+  if (parameters["page"] !== undefined) {
+    queryParameters["page"] = parameters["page"];
+  }
+  if (parameters["userId"] !== undefined) {
+    queryParameters["userId"] = parameters["userId"];
+  }
+  if (parameters.$queryParameters) {
+    Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
+      queryParameters[parameterName] =
+        parameters.$queryParameters[parameterName];
+    });
+  }
+  let keys = Object.keys(queryParameters);
+  return (
+    domain +
+    path +
+    (keys.length > 0
+      ? "?" +
+        keys
+          .map(key => key + "=" + encodeURIComponent(queryParameters[key]))
+          .join("&")
+      : "")
+  );
+};
+
+
+/**
  * query a page of tasks accepted(获取一页用户接受的任务)
  * request: qAcceptPage
  * url: qAcceptPageURL

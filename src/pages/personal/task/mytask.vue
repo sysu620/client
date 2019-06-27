@@ -50,7 +50,7 @@
 <script>
 import { getStore } from "../../../config/mUtils";
 import  pubitem  from "../../../components/pubitem";
-import { qAcceptPage } from "../../../service/getData";
+import { qAcceptPage, qAcceptPage2 } from "../../../service/getData";
 export default {
   data() {
     return {
@@ -73,6 +73,17 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
+
+      let res2 = await qAcceptPage2({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      console.log(res2);
+
+      for(var i = 0; i < this.tasks.length; i++) {
+        this.tasks[i].state = res2.data.contents[i].state
+      }
     }
   },
 

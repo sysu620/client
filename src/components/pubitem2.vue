@@ -4,7 +4,7 @@
       <div class="six wide column left aligned">
 
 
-        <router-link :to="{name: 'qsfill', params: { num: this.taskId }}" >{{taskTitle}}</router-link>
+        <router-link :to="{name: 'qsfill', params: { num: this.taskId , state: 0}}" >{{taskTitle}}</router-link>
       </div>
       <div class="three wide column left aligned">{{taskType}}</div>
       <div class="three wide column left aligned">{{state}}</div>
