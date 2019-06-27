@@ -22,7 +22,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 前言
 由于课程要求，本次我们团队做了一个“挣闲钱“平台，主要是为了给在校大学生提供一个能够获得额外收入的方式。具体来说它的实现背景是这样的：
-![前言](https://img-blog.csdnimg.cn/20190627184139624.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![前言](https://github.com/sysu620/client/blob/master/screenshots/1.png)
 
 我们实现的业务包括登录、注册、用户信息修改，任务发布接取，问卷发布填写等。内置任务管理系统，问卷填写系统，交易管理系统，账户管理系统。由于涉及到任务的处理以及金钱的管理，所以对逻辑严谨度要求高，页面之间交互复杂。
 这种功能性的项目很实用但是往往也很枯燥，没有音乐播放器那么看起来绚丽。但我们尽量让我们的UI看起来美观舒适。
@@ -93,23 +93,23 @@ npm run build --report
 
 ## 部分截图
 ### 登陆
-![登陆页面](https://img-blog.csdnimg.cn/20190627204136913.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![登陆页面](https://github.com/sysu620/client/blob/master/screenshots/2.png)
 
 ### 主页
-![主页](https://img-blog.csdnimg.cn/20190627204312697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![主页](https://github.com/sysu620/client/blob/master/screenshots/12.png)
 ### 接取的任务
-![个人任务](https://img-blog.csdnimg.cn/20190627204327627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![个人任务](https://github.com/sysu620/client/blob/master/screenshots/11.png)
 
 ### 全部任务
-![全部任务](https://img-blog.csdnimg.cn/20190627204426503.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![全部任务](https://github.com/sysu620/client/blob/master/screenshots/8.png)
 
 ### 问卷填写
-![问卷](https://img-blog.csdnimg.cn/20190627204345165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![问卷](https://github.com/sysu620/client/blob/master/screenshots/10.png)
 ### 问卷统计
-![题目统计](https://img-blog.csdnimg.cn/20190627204401851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![题目统计](https://github.com/sysu620/client/blob/master/screenshots/9.png)
 ### 制作问卷
 
-![发布问卷](https://img-blog.csdnimg.cn/20190627204441692.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h1YW5nYnhfdHg=,size_16,color_FFFFFF,t_70)
+![发布问卷](https://github.com/sysu620/client/blob/master/screenshots/7.png)
 
 
 ## 项目布局
