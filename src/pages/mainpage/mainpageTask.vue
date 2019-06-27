@@ -184,6 +184,12 @@
       <div class="row"></div>
       <div class="row"></div>
     </div>
+    <div style="width:50px;height:50px;position:fixed;right:2%;bottom: 8%">
+      <router-link :to="{name: 'qsedit'}" class="ui right floated button blue">发布问卷</router-link>
+    </div>
+    <div style="width:50px;height:50px;position:fixed;right:2%;bottom: 23%">
+      <button class="ui right floated button blue">发布快递</button>
+    </div>
   </div>
 </template>
 

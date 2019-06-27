@@ -1,43 +1,47 @@
 <template>
-  <div>
-    <div class="one wide column"></div>
-    <div class="fourteen wide column">
-      <div class="ui center aligned container black_border">
-        <div class="ui red padded grid">
-          <div class="one wide column"></div>
-          <div class="three wide column">
-            <div class="ui container">
-              <div class="ui grid">
-                <div class="row"></div>
-                <img class="ui small image" src="../assets/log.jpg">
+  <div class="sixteen wide column">
+    <div class="ui center aligned container">
+      <div class="ui grid">
+        <div class="one wide column"></div>
+        <div class="fourteen wide column">
+          <div class="ui center aligned container black_border">
+            <div class="ui red padded grid">
+              <div class="one wide column"></div>
+              <div class="three wide column">
+                <div class="ui container">
+                  <div class="ui grid">
+                    <div class="row"></div>
+                    <img class="ui small image" src="../assets/log.jpg">
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="nine wide column left aligned">
-            <div class="ui grid">
-              <div class="sixteen wide column">{{taskTitle}}</div>
+              <div class="nine wide column left aligned">
+                <div class="ui grid">
+                  <div class="sixteen wide column">{{taskTitle}}</div>
 
-              <div class="four wide column">问卷填写进度: {{state}}</div>
-              <div class="four wide column">任务种类: {{taskType}}</div>
-              <div class="two wide column">0/1</div>
+                  <div class="four wide column">问卷填写进度: {{state}}</div>
+                  <div class="four wide column">任务种类: {{taskType}}</div>
+                  <div class="two wide column">0/1</div>
 
-              <div class="sixteen wide column">任务截止时间: {{endTime}}</div>
-            </div>
-          </div>
-          <div class="three wide column">
-            <div class="ui center aligned container">
-              <div class="ui red padded grid">
-                <div class="row"></div>
-                <div class="row"></div>
-                <button class="ui small blue button" @click="getTaskDetail">查看任务</button>
+                  <div class="sixteen wide column">任务截止时间: {{endTime}}</div>
+                </div>
               </div>
+              <div class="three wide column">
+                <div class="ui center aligned container">
+                  <div class="ui red padded grid">
+                    <div class="row"></div>
+                    <div class="row"></div>
+                    <button class="ui small blue button" @click="getTaskDetail">查看任务</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row"></div>
             </div>
           </div>
-          <div class="row"></div>
         </div>
+        <div class="one wide column"></div>
       </div>
     </div>
-    <div class="one wide column"></div>
   </div>
 </template>
 
@@ -45,14 +49,13 @@
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     getTaskDetail() {
-      console.log(this.taskId)
-      if(this.taskType == "questionare") {
-        this.$router.push({name:'qsfill', params:{num: this.taskId}})
+      console.log(this.taskId);
+      if (this.taskType == "questionare") {
+        this.$router.push({ name: "qsfill", params: { num: this.taskId } });
       }
     }
   },
