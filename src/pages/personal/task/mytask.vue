@@ -19,7 +19,7 @@
             <div class="six wide column">
               <div class="ui right container">
                 <div class="ui blue six item menu">
-                  <a class="item"></a>
+                  <a class="item">&lt;</a>
                   <a class="active item">1</a>
                   <a class="item">2</a>
                   <a class="disabled item">...</a>
@@ -29,66 +29,15 @@
               </div>
             </div>
             <div class="one wide column"></div>
-
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="one wide column"></div>
-                  <div class="three wide column">
-                    <div class="ui container">
-                      <div class="ui grid">
-                        <div class="row"></div>
-                        <img class="ui small image" src="../../../assets/log.jpg">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="nine wide column left aligned">
-                    <div class="ui grid">
-                      <div class="sixteen wide column">别人的快递1</div>
-
-                      <div class="four wide column">快递领取进度</div>
-                      <div class="ten wide column">
-                        <div class="ui progress">
-                          <div class="bar">
-                            <div class="progress"></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="two wide column">0/1</div>
-
-                      <div class="sixteen wide column">任务截止时间: 2019-4-27 18:00</div>
-                    </div>
-                  </div>
-                  <div class="three wide column">
-                    <div class="ui center aligned container">
-                      <div class="ui red padded grid">
-                        <div class="row"></div>
-                        <div class="row"></div>
-                        <button class="ui small blue button">查看任务</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
-
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="row"></div>
-                  <div class="row"></div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
-
-            <div class="sixteen wide column"></div>
-            <div class="one wide column"></div>
+            <pubitem
+              v-for="task in tasks"
+              v-bind:key="task.taskId"
+              v-bind:taskId="task.taskId"
+              v-bind:taskTitle="task.taskTitle"
+              v-bind:endTime="task.endTime"
+              v-bind:state="task.state"
+              v-bind:taskType="task.taskType"
+            ></pubitem>
           </div>
         </div>
       </div>
@@ -100,12 +49,38 @@
 
 <script>
 import { getStore } from "../../../config/mUtils";
+import  pubitem  from "../../../components/pubitem";
+import { qAcceptPage } from "../../../service/getData";
 export default {
   data() {
     return {
-      person: getStore("userId")
+      person: getStore("userId"),
+      tasks: []
     };
+  },
+
+  mounted() {
+    this.getTaskUserAccept();
+  },
+  methods: {
+    async getTaskUserAccept() {
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await qAcceptPage({
+        page: 0,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      console.log(res);
+      this.tasks = res.data.contents;
+    }
+  },
+
+  components: {
+    pubitem
   }
+
+
 };
 </script>
 

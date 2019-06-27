@@ -19,9 +19,9 @@
                 <div class="ui grid">
                   <div class="sixteen wide column">{{taskTitle}}</div>
 
-                  <div class="four wide column">问卷填写进度: {{state}}</div>
-                  <div class="four wide column">任务种类: {{taskType}}</div>
-                  <div class="two wide column">0/1</div>
+                  <div class="sixteen wide column">任务种类: {{taskType}}</div>
+
+                  <div class="sixteen wide column">问卷进度: {{state}}</div>
 
                   <div class="sixteen wide column">任务截止时间: {{endTime}}</div>
                 </div>
@@ -35,7 +35,6 @@
                   </div>
                 </div>
               </div>
-              <div class="row"></div>
             </div>
           </div>
         </div>

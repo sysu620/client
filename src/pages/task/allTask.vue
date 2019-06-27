@@ -17,7 +17,7 @@
           <div class="ui red padded grid">
             <div class="one wide column"></div>
             <div class="two wide column left aligned">
-              <router-link :to="{name: 'allTask'}" class="ui mini button">查看全部</router-link>
+              <router-link :to="{name: 'mainpageTask'}" class="ui mini button">返回主页</router-link>
             </div>
             <div class="two wide column left aligned">
               <router-link :to="{name: 'filterQuestion'}" class="ui mini button">问卷任务</router-link>
@@ -42,100 +42,22 @@
                 <div class="ui red padded grid">
                   <div class="sixteen wide column">
                     <div class="ui grid">
-                      <div class="eight wide column left aligned">任务标题</div>
-                      <div class="two wide column left aligned">任务类型</div>
-                      <div class="two wide column left aligned">完成进度</div>
+                      <div class="six wide column left aligned">任务标题</div>
+                      <div class="three wide column left aligned">任务类型</div>
+                      <div class="three wide column left aligned">完成进度</div>
                       <div class="four wide column left aligned">截止日期</div>
                     </div>
                   </div>
+                  <pubitem  
+                    v-for="task in tasks"
+                    v-bind:key="task.taskId"
+                    v-bind:taskId="task.taskId"
+                    v-bind:taskTitle="task.taskTitle"
+                    v-bind:endTime="task.endTime"
+                    v-bind:state="task.state"
+                    v-bind:taskType="task.taskType"
+                  ></pubitem>
 
-                  <div class="sixteen wide column mildblue">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned">这是别人的问卷1</div>
-                      <div class="two wide column left aligned">问卷</div>
-                      <div class="two wide column left aligned">10/50</div>
-                      <div class="four wide column left aligned">2019年5月26日</div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned">这是别人的快递1</div>
-                      <div class="two wide column left aligned">快递</div>
-                      <div class="two wide column left aligned">0/1</div>
-                      <div class="four wide column left aligned">2019年5月26日</div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column mildblue">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column mildblue">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-                  <div class="sixteen wide column">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column mildblue">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-
-                  <div class="sixteen wide column mildblue">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
-                  <div class="sixteen wide column">
-                    <div class="ui grid">
-                      <div class="eight wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="two wide column left aligned"></div>
-                      <div class="four wide column left aligned"></div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -146,7 +68,7 @@
             <div class="eight wide column"></div>
             <div class="six wide column right aligned">
               <div class="ui blue six item menu">
-                <a class="item"></a>
+                <a class="item">&lt;</a>
                 <a class="active item">1</a>
                 <a class="item">2</a>
                 <a class="disabled item">...</a>
@@ -164,6 +86,53 @@
   </div>
 </template>
 
+<script>
+import { getStore } from "../../config/mUtils";
+import  pubitem  from "../../components/pubitem2";
+import { qPublishPage } from "../../service/getData";
+
+export default {
+  data() {
+    return {
+      person: getStore("userId"),
+      tasks: []
+    };
+  },
+
+  mounted() {
+    this.getTaskUserPub();
+  },
+
+  methods: {
+    async getTaskUserPub() {
+      let header = { headers: { "Content-Type": "application/json" } };
+      console.log("start request");
+      let res = await qPublishPage({
+        page: 1,
+        userId: parseInt(getStore("userId")),
+        $config: header
+      });
+      console.log(res);
+      this.tasks = res.data.contents;
+      while(this.tasks.length < 10) {
+        this.tasks.push({
+          taskId: 0,
+          taskTitle: "",
+          taskType: "",
+          endTime: "",
+          state: ""
+
+        })
+        }
+        console.log(this.tasks)
+    }
+  },
+
+  components: {
+    pubitem
+  }
+};
+</script>
 
 <style scoped>
 .semantic-component {

@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="ui grid">
-                  <div class="twelve wide column"></div>
+                  <div class="eleven wide column"></div>
                   <div class="three wide column left aligned">
                     <router-link
                       :to="{name: 'filterQuestion'}"
@@ -135,7 +135,7 @@
                       style="width:120px;"
                     >查看全部</router-link>
                   </div>
-                  <div class="one wide column"></div>
+                  <div class="two wide column"></div>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@
                 </div>
 
                 <div class="ui grid">
-                  <div class="twelve wide column"></div>
+                  <div class="eleven wide column"></div>
                   <div class="three wide column left aligned">
                     <router-link
                       :to="{name: 'filterDelivery'}"
@@ -170,7 +170,7 @@
                       style="width:120px;"
                     >查看全部</router-link>
                   </div>
-                  <div class="one wide column"></div>
+                  <div class="two wide column"></div>
                 </div>
               </div>
             </div>

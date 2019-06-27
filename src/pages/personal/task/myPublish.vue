@@ -19,7 +19,7 @@
             <div class="six wide column">
               <div class="ui right container">
                 <div class="ui blue six item menu">
-                  <a class="item"></a>
+                  <a class="item">&lt; </a>
                   <a class="active item">1</a>
                   <a class="item">2</a>
                   <a class="disabled item">...</a>
@@ -38,20 +38,6 @@
               v-bind:state="task.state"
               v-bind:taskType="task.taskType"
             ></pubitem>
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-              <div class="ui center aligned container black_border">
-                <div class="ui red padded grid">
-                  <div class="row"></div>
-                  <div class="row"></div>
-                  <div class="row"></div>
-                </div>
-              </div>
-            </div>
-            <div class="one wide column"></div>
-
-            <div class="sixteen wide column"></div>
-            <div class="one wide column"></div>
           </div>
         </div>
       </div>
@@ -89,7 +75,18 @@ export default {
       });
       console.log(res);
       this.tasks = res.data.contents;
-    }
+      /*while(this.tasks.length < 5) {
+        this.tasks.push({
+          taskId: 0,
+          taskTitle: "",
+          taskType: "",
+          endTime: "",
+          state: ""
+
+        })
+        }
+        console.log(this.tasks)
+    */}
   },
 
   components: {
