@@ -59,6 +59,8 @@ const filterQuestion = r => require.ensure([], () => r(require("../pages/task/fi
 
 const qsedit = r => require.ensure([], () => r(require("../pages/task/qsedit")), "qsedit");
 const qsfill = r => require.ensure([], () => r(require("../pages/task/qsfill")), "qsfill");
+const qsdata = r => require.ensure([], () => r(require("../pages/task/qsdata")), "qsdata");
+
 export default new Router({
   routes: [
     {
@@ -212,6 +214,11 @@ export default new Router({
           path: "/task/questionare/:num/:state",
           component: qsfill,
           name: "qsfill"
+        },
+        {
+          path: "/task/answer/:num",
+          component: qsdata,
+          name: "qsdata"
         }
       ]
     }

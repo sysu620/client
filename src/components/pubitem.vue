@@ -61,6 +61,8 @@ export default {
           this.$router.push({ name: "qsfill", params: { num: this.taskId , state: 1} });
         } else if(this.state == "已完成") {
           this.stateFlag = false
+        } else if(this.state == "进行中") {
+          this.$router.push({ name: "qsdata", params: { num: this.taskId} });
         }
       }
     }

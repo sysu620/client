@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { getQuestionare, acceptTask, finishAccept } from "../../service/getData";
+import { getQuestionare, acceptTask, finishAccept, fillQuery } from "../../service/getData";
 
 import { getStore, setStore } from "../../config/mUtils";
 /**
@@ -105,13 +105,13 @@ import { getStore, setStore } from "../../config/mUtils";
         this.qsList = res.data
         this.qsList.questionare.forEach( item => {
             item.options = item.options.split(',')
-            if (item.isNeed) {
+            //if (item.isNeed) {
               if (item.type === 'checkbox') {
                 this.requiredItem[item.num] = []
               } else {
-                this.requiredItem[item.num] = ''
+                this.requiredItem[item.num] = []
               }
-            }
+            //}
         } )
       },
       getMsg(item) {
@@ -142,19 +142,64 @@ import { getStore, setStore } from "../../config/mUtils";
              this.$router.push({ name: "mainpagePub"})
             }, 1500)
         } else if(this.$route.params.state == '1') {
-          let header = { headers: { 
-            "Content-Type": "application/json",
-            "Authorization": getStore("token")} };
-          console.log("start request");
-          let taskId = {taskId: this.$route.params.num}
-          let res = await finishAccept({
-            body: taskId,
-            $config: header
-          });
-          console.log(res.data)
-          setTimeout(() => {
-             this.$router.push({ name: "mainpagePub"})
+          let result = this.validate()
+          if (result) {
+            let header = { headers: { 
+              "Content-Type": "application/json",
+              "Authorization": getStore("token")} };
+            console.log("start request");
+            let taskId = {taskId: this.$route.params.num}
+            console.log(this.requiredItem[2])
+            //let answer = {questionareId:0, answer:''}
+            let answers = {contents:[]}
+            for(var i = 0; i < this.qsList.questionare.length; i++) {
+              let answer = {questionareId:0, answer:''}
+              answer.questionareId = this.qsList.questionare[i].questionareId
+              if(this.qsList.questionare[i].type == "radio") {
+                answer.answer = this.requiredItem[i+1]
+              } else {
+                answer.answer = ''
+                for(var j = 0; j < this.requiredItem[i + 1].length; j++) {
+                  
+                  //console.log("hh " + this.requiredItem[i+1][j])
+                  if(j == 0) {
+                
+                    answer.answer += this.requiredItem[i+1][0]
+                  } else {
+                  answer.answer += "," + this.requiredItem[i+1][j]
+                  }
+                }
+              }
+              answers.contents.push(answer)
+            }
+            console.log(answers)
+            let res = await fillQuery({
+              body: answers,
+              $config: header
+            });
+            console.log(res.data)
+            let res2 = await finishAccept({
+              body: taskId,
+              $config: header
+            });
+            console.log(res2.data)
+            
+
+            this.showDialog = true
+            this.submitError = false
+            this.info = '提交成功！'
+            setTimeout(() => {
+              this.showDialog = false
+            }, 500)
+            setTimeout(() => {
+              this.$router.push({ name: "mainpagePub"})
             }, 1500)
+
+          } else {
+            this.showDialog = true
+            this.submitError = true
+            this.info = '提交失败！ 存在必填项未填'
+          }
         }
 
         /*if (this.qsList.task.state === 'inissue') {
@@ -181,9 +226,9 @@ import { getStore, setStore } from "../../config/mUtils";
         }*/
       },
       validate() {
-        for (let i in this.requiredItem) {
-          if (this.requiredItem[i].length === 0) return false
-        }
+        //for (let i in this.requiredItem) {
+          //if (this.requiredItem[i].length === 0) return false
+        //}
         return true
       }
     },
