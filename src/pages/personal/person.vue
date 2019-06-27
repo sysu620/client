@@ -40,7 +40,7 @@
             <div class="two wide column"></div>
             <div class="row"></div>
             <div class="row">
-              <div class="teal five wide column">
+              <div class="olive five wide column">
                 <div class="ui center aligned container">
                   <router-link :to="{name: 'wallet'}" class="ui item">
                     <i class="huge question circle outline icon"></i>
@@ -48,7 +48,7 @@
                 </div>
               </div>
               <div class="one wide column"></div>
-              <div class="teal four wide column">
+              <div class="olive four wide column">
                 <div class="ui center aligned container">
                   <router-link :to="{name: 'help'}" class="ui item">
                     <i class="huge dollar icon"></i>
@@ -56,7 +56,7 @@
                 </div>
               </div>
               <div class="one wide column"></div>
-              <div class="teal five wide column">
+              <div class="olive five wide column">
                 <div class="ui center aligned container">
                   <router-link :to="{name: 'comment', params: {person: person}}" class="ui item">
                     <i class="huge comment icon"></i>
@@ -122,7 +122,8 @@ export default {
 
 .f {
   font-family: Arial, Helvetica, sans-serif;
-  color: rgba(102, 102, 255, 0.349019607843137);
+  /* color: rgba(102, 102, 255, 0.349019607843137);*/
+  color: violet;
   font-size: 1em;
 }
 
