@@ -91,7 +91,7 @@
 
 <script>
 import { getStore } from "../../config/mUtils";
-import  pubitem  from "../../components/pubitem2";
+import  pubitem  from "../../components/pubitem";
 import { qPublishPage } from "../../service/getData";
 
 export default {
