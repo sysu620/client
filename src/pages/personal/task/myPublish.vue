@@ -19,8 +19,8 @@
         <div class="ui center aligned container">
           <div class="ui red padded grid">
             <div class="nine wide column"></div>
-            <div class="six wide column">
-              <div class="ui right container">
+            <div class="seven wide column">
+              <!--<div class="ui right container">
                 <div class="ui blue six item menu">
                   <a class="item">&lt; </a>
                   <a class="active item">1</a>
@@ -29,6 +29,15 @@
                   <a class="item">7</a>
                   <a class="item">></a>
                 </div>
+              </div>-->
+              <div class="ui right container">
+                <button class="ui button one wide column blue" @click="turnPage(-1)">
+                  &lt;Prev
+                </button>
+                <span>当前第 {{ currentPage }} 页</span>
+                <button class="ui button one wide column blue" @click="turnPage(1)">
+                  >Next
+                </button>
               </div>
             </div>
             <div class="one wide column"></div>
@@ -59,25 +68,31 @@ export default {
   data() {
     return {
       person: getStore("userId"),
-      tasks: []
+      tasks: [],
+      currentPage: 1
     };
   },
 
   mounted() {
-    this.getTaskUserPub();
+    this.getTaskUserPub(this.currentPage);
   },
 
   methods: {
-    async getTaskUserPub() {
+    async getTaskUserPub(page) {
       let header = { headers: { "Content-Type": "application/json" } };
       console.log("start request");
-      let res = await qPublishPage({
-        page: 0,
-        userId: parseInt(getStore("userId")),
-        $config: header
-      });
-      console.log(res);
-      this.tasks = res.data.contents;
+      let res
+      try {
+        res = await qPublishPage({
+          page: page,
+          userId: parseInt(getStore("userId")),
+          $config: header
+        })
+        console.log(res.data);
+        this.tasks = res.data.contents;
+      } catch(e) {
+        this.currentPage--
+      };
       /*while(this.tasks.length < 5) {
         this.tasks.push({
           taskId: 0,
@@ -89,7 +104,20 @@ export default {
         })
         }
         console.log(this.tasks)
-    */}
+    */},
+      turnPage (num) {
+        if (num === 1) {
+          this.currentPage++
+          this.getTaskUserPub(this.currentPage)
+        } else {
+          if (this.currentPage === 1) {
+            return
+          } else {
+            this.currentPage--  
+            this.getTaskUserPub(this.currentPage)        
+          }
+        }
+      },
   },
 
   components: {

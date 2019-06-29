@@ -69,16 +69,15 @@
 
             <div class="one wide column"></div>
             <div class="eight wide column"></div>
-            <div class="six wide column right aligned">
-              <div class="ui blue six item menu">
-                <a class="item">&lt;</a>
-                <a class="active item">1</a>
-                <a class="item">2</a>
-                <a class="disabled item">...</a>
-                <a class="item">7</a>
-                <a class="item">></a>
+              <div class="ui right container">
+                <button class="ui  one wide column blue" @click="turnPage(-1)">
+                  &lt;Prev
+                </button>
+                <span>当前第 {{ currentPage }} 页</span>
+                <button class="ui  one wide column blue" @click="turnPage(1)">
+                  >Next
+                </button>
               </div>
-            </div>
             <div class="one wide column"></div>
           </div>
           <div class="three wide column"></div>
@@ -97,37 +96,55 @@ export default {
   data() {
     return {
       person: getStore("userId"),
-      tasks: []
+      tasks: [],
+      currentPage: 1
     };
   },
 
   mounted() {
-    this.getPageD();
+    this.getPageD(this.currentPage);
   },
 
   methods: {
-    async getPageD() {
+    async getPageD(page) {
       let header = { headers: { "Content-Type": "application/json" } };
       console.log("start request");
-      let res = await queryPageD({
-        page: 1,
-        userId: parseInt(getStore("userId")),
-        $config: header
-      });
-      console.log(res);
-      this.tasks = res.data.contents;
-      for(var i = this.tasks.length; i < 10; i++) {
-        this.tasks.push({
-          taskId: i+1,
-          taskTitle: "",
-          taskType: "",
-          endTime: "",
-          state: ""
+      try{
+        let res = await queryPageD({
+          page: page,
+          userId: parseInt(getStore("userId")),
+          $config: header
+        });
+        console.log(res);
+        this.tasks = res.data.contents;
+        for(var i = this.tasks.length; i < 10; i++) {
+          this.tasks.push({
+            taskId: i+1,
+            taskTitle: "",
+            taskType: "",
+            endTime: "",
+            state: ""
 
-        })
+          })
         }
         console.log(this.tasks)
-    }
+      } catch(e){
+        this.currentPage--
+      }
+    },
+    turnPage (num) {
+      if (num === 1) {
+        this.currentPage++
+        this.getPageD(this.currentPage)
+      } else {
+        if (this.currentPage === 1) {
+          return
+        } else {
+          this.currentPage--  
+          this.getPageD(this.currentPage)        
+        }
+      }
+    },
   },
 
   components: {

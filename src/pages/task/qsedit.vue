@@ -1,6 +1,6 @@
 <template>
   <div class="edit-container">
-    <h2 @click="titleClick" v-if="!titleChange">{{qsItem.title}}</h2>
+    <h2 @click="titleClick" v-if="!titleChange">{{ titleValue }}</h2>
     <input type="text" name="qsTitle" v-if="titleChange"
     v-model="titleValue"
     @blur="onblur"
@@ -12,7 +12,7 @@
           <p class="qs-title">
             {{qs.num}}&nbsp;{{qs.title}}&nbsp;{{getMsg(qs)}}
           </p>
-          <p v-for="option in qs.options" class="option">
+          <p v-for="option in qs.options" class="option" v-if="option != ','">
             <label>
               <input 
               type="radio" 
@@ -116,7 +116,7 @@ export default {
       isError: false,
       showBtn: false,
       titleChange: false,
-      titleValue: '',
+      titleValue: '这里是标题',
       showAddQsDialog: false,
       qsInputTitle: '',
       qsInputOptions: [],
@@ -170,6 +170,7 @@ export default {
       setTimeout( () => {
         this.$refs.titleInput.focus()
       }, 150 )
+      this.titleValue = this.$refs.titleInput
     },
     del(index) {
       this.qsList.questionare.splice(index, 1)
@@ -239,13 +240,17 @@ export default {
             this.qsList.questionare[i].isNeed = "false"
           }
         }
+        this.qsList.task.taskTitle = this.titleValue
         //console.log(this.qsList.questionare)
         this.showDialog = false
         let header = { headers: { 
             "Content-Type": "application/json",
             "Authorization": getStore("token")} };
         let res = await publishQTask({ body: this.qsList, $config: header });
-        console.log(res.data)
+        console.log(res.data) 
+        setTimeout(() => {
+              this.$router.push({ name: "mainpagePub"})
+            }, 1500)
       }
       
     },

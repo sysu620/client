@@ -64,6 +64,12 @@ export default {
         } else if(this.state == "进行中") {
           this.$router.push({ name: "qsdata", params: { num: this.taskId} });
         }
+      } else if(this.taskType == "delivery") {
+        if(this.state == "进行中") {
+          this.$router.push({ name: "taskDetail", params: { taskId: this.taskId ,state: 1} });
+        } else {
+          this.stateFlag = false
+        }
       }
     }
   },

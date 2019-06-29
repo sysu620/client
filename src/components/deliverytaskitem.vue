@@ -4,7 +4,7 @@
       <div class="six wide column left aligned">
 
 
-        <router-link :to="{name: 'taskDetail', params: { taskId: this.taskId }}" >{{taskTitle}}</router-link>
+        <router-link :to="{name: 'taskDetail', params: { taskId: this.taskId, state: 0 }}" v-if="stateFlag">{{taskTitle}}</router-link>
       </div>
       <div class="three wide column left aligned">{{taskType}}</div>
       <div class="three wide column left aligned">{{state}}</div>
@@ -17,10 +17,21 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+       stateFlag: true
+    };
+  },
+  mounted() {
+    this.getState()
   },
   methods: {
-
+    getState() {
+      console.log(this.stateFlag)
+      if(this.state == "已完成") {
+        console.log(this.stateFlag)
+        this.stateFlag = false
+      }
+    }
   },
   props: ["taskTitle", "state", "taskType", "endTime", "taskId"]
 };

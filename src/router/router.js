@@ -192,7 +192,7 @@ export default new Router({
           name: "allTask"
         },
         {
-          path: "/task/:taskId/taskDetail",
+          path: "/task/:taskId/taskDetail/:state",
           component: taskDetail,
           name: "taskDetail"
         },

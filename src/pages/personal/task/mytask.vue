@@ -21,14 +21,13 @@
             <div class="nine wide column"></div>
             <div class="six wide column">
               <div class="ui right container">
-                <div class="ui blue six item menu">
-                  <a class="item">&lt;</a>
-                  <a class="active item">1</a>
-                  <a class="item">2</a>
-                  <a class="disabled item">...</a>
-                  <a class="item">7</a>
-                  <a class="item">></a>
-                </div>
+                <button class="ui button one wide column blue" @click="turnPage(-1)">
+                  &lt;Prev
+                </button>
+                <span>当前第 {{ currentPage }} 页</span>
+                <button class="ui button one wide column blue" @click="turnPage(1)">
+                  >Next
+                </button>
               </div>
             </div>
             <div class="one wide column"></div>
@@ -53,41 +52,75 @@
 <script>
 import { getStore } from "../../../config/mUtils";
 import  pubitem  from "../../../components/pubitem";
-import { qAcceptPage, qAcceptPage2 } from "../../../service/getData";
+import { qAcceptPage, qAcceptPage2, finishAccept } from "../../../service/getData";
 export default {
   data() {
     return {
       person: getStore("userId"),
-      tasks: []
+      tasks: [],
+      currentPage: 1
     };
   },
 
   mounted() {
-    this.getTaskUserAccept();
+    this.getTaskUserAccept(this.currentPage);
   },
   methods: {
-    async getTaskUserAccept() {
+    async getTaskUserAccept(page) {
       let header = { headers: { "Content-Type": "application/json" } };
       console.log("start request");
-      let res = await qAcceptPage({
-        page: 0,
-        userId: parseInt(getStore("userId")),
-        $config: header
-      });
-      console.log(res);
-      this.tasks = res.data.contents;
+      try {
+        let res = await qAcceptPage({
+          page: page,
+          userId: parseInt(getStore("userId")),
+          $config: header
+        });
+        console.log(res);
+        this.tasks = res.data.contents;
 
-      let res2 = await qAcceptPage2({
-        page: 0,
-        userId: parseInt(getStore("userId")),
-        $config: header
-      });
-      console.log(res2);
+        let res2 = await qAcceptPage2({
+          page: page,
+          userId: parseInt(getStore("userId")),
+          $config: header
+        });
+        console.log(res2);
 
-      for(var i = 0; i < this.tasks.length; i++) {
-        this.tasks[i].state = res2.data.contents[i].state
+        for(var i = 0; i < this.tasks.length; i++) {
+          if(this.task[i].state == "已完成" && res2.data.contents[i].state == "进行中") {
+            let header = { headers: { 
+              "Content-Type": "application/json",
+              "Authorization": getStore("token")} };
+            console.log("start request");
+
+            let taskId = {taskId: parseInt(this.task[i].taskId)}
+            let res = await finishAccept({
+              body: taskId,
+              $config: header
+            });
+            console.log(res.data)
+          } else {
+            this.tasks[i].state = res2.data.contents[i].state
+          }
+        }
+      } catch(e) {
+        if(this.currentPage > 1) {
+          this.currentPage--
+        }
       }
-    }
+    },
+    turnPage (num) {
+      if (num === 1) {
+        this.currentPage++
+        this.getTaskUserAccept(this.currentPage)
+      } else {
+        if (this.currentPage === 1) {
+          return
+        } else {
+          this.currentPage--  
+          this.getTaskUserAccept(this.currentPage)        
+        }
+      }
+    },
   },
 
   components: {

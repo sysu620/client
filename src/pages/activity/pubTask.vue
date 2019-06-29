@@ -26,74 +26,35 @@
                   <div class="four wide column">任务类型</div>
                   <div class="twelve wide column">快递拿取</div>
 
-                  <div class="four wide column">任务报酬</div>
+                  <div class="four wide column">任务标题</div>
                   <div class="twelve wide column">
                     <div class="ui input">
-                      <input type="text" placeholder>
-                    </div>&nbsp;&nbsp;&nbsp;币
+                      <input type="text" placeholder v-model="taskTitle">
+                    </div>
                   </div>
 
-                  <div class="four wide column">任务时限</div>
+                  <div class="four wide column">截止时间</div>
                   <div class="twelve wide column">
                     <div class="ui mini input">
-                      <input type="text" placeholder>
+                      <input type="text" placeholder v-model="year">
                     </div>年
                     <div class="ui mini input">
-                      <input type="text" placeholder>
+                      <input type="text" placeholder v-model="month">
                     </div>月
                     <div class="ui mini input">
-                      <input type="text" placeholder>
+                      <input type="text" placeholder v-model="day">
                     </div>日
                   </div>
                   <div class="four wide column">任务具体内容</div>
                   <div class="twelve wide column"></div>
-
-                  <div class="four wide column right aligned">问卷链接</div>
-                  <div class="twelve wide column">
                     <div class="ui input">
-                      <input type="text" placeholder style="width:450px;">
+                      <input type="text" placeholder style="width:450px;height:200px" v-model="content">
                     </div>
-                  </div>
-
-                  <div class="four wide column right aligned">问卷内容</div>
-                  <div class="twelve wide column">
-                    <div class="ui input">
-                      <input type="text" placeholder style="width:450px;">
-                    </div>
-                  </div>
-
-                  <div class="four wide column right aligned">问卷题数</div>
-                  <div class="four wide column">
-                    <div class="ui input">
-                      <input type="text" placeholder style="width:100px;">
-                    </div>&nbsp;&nbsp;&nbsp;题
-                  </div>
-                  <div class="four wide column right aligned">需求问卷数量</div>
-                  <div class="four wide column">
-                    <div class="ui input">
-                      <input type="text" placeholder style="width:100px;">
-                    </div>&nbsp;&nbsp;&nbsp;份
-                  </div>
-
-                  <div class="four wide column right aligned">问卷用途</div>
-                  <div class="twelve wide column">
-                    <div class="ui input">
-                      <input type="text" placeholder style="width:450px;">
-                    </div>
-                  </div>
-
-                  <div class="four wide column right aligned">其他备注</div>
-                  <div class="twelve wide column">
-                    <div class="ui textarea">
-                      <textarea rows="3" cols="60"></textarea>
-                    </div>
-                  </div>
-                  <div class="row"></div>
-                  <div class="row"></div>
-                  <div class="twelve wide column"></div>
                   <div class="three wide column left aligned">
-                    <button class="ui small blue button" style="width:120px;">发布</button>
+                    <button class="ui small blue button" style="width:120px;" @click="publishD()">发布</button>
                   </div>
+                  </div>
+
                   <div class="one wide column"></div>
                 </div>
               </div>
@@ -106,11 +67,11 @@
       <div class="three wide column"></div>
       <div class="row"></div>
     </div>
-  </div>
 </template>
 
 <script>
 import { getStore } from "../../config/mUtils";
+import { queryPageD, queryPageQ, publishDTask } from "../../service/getData";
 export default {
   mounted() {
     $(this.$el)
@@ -121,10 +82,39 @@ export default {
     return {
       person: getStore("userId"),
       taskType: "delivery",
-      taskId: 0,
-      taskTitle: ""
+      taskTitle: "",
+      content: "",
+      year: "",
+      month: "",
+      day: ""
     };
-  }
+  },
+  methods: {
+    async publishD() {
+      let task = {
+        
+        task: {
+          taskTitle: this.taskTitle,
+          taskType: this.taskType,
+          endTime: this.year + '-' + this.month + '-' + this.day
+        },
+        delivery: {
+          content: this.content,
+        }
+      }
+
+      console.log(task)
+      
+      let header = { headers: { 
+          "Content-Type": "application/json",
+          "Authorization": getStore("token")} };
+      let res = await publishDTask({ body: task, $config: header });
+      console.log(res.data) 
+      setTimeout(() => {
+          this.$router.push({ name: "mainpagePub"})
+      }, 1500)
+    }
+  },
 };
 </script>
 
