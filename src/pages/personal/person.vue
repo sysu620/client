@@ -126,7 +126,7 @@ export default {
 .f {
   font-family: Arial, Helvetica, sans-serif;
   /* color: rgba(102, 102, 255, 0.349019607843137);*/
-  color: violet;
+  color: blue;
   font-size: 1em;
 }
 
